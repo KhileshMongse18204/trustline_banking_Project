@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About TrustLine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+          monospace;
+      }
+      #footerlast{
+        display: flex;
+        justify-content: center;
+      }
+      #navbar{
+        position: sticky;
+        top: 0px;
+        z-index: 100;
+      }
+      #link:hover{
+        color: #0D6EFD;
+      }
+      #zcolor{
+        color: #424242;
+      }
+      #colorw{
+        color: white;
+        margin-bottom: 20px;
+      }
+      .menu.selected {
+        color: #387ED1;
+      }
+      .value-card {
+        padding: 2rem;
+        border-radius: 12px;
+        background: #f8f9fa;
+        border-left: 4px solid #387ED1;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom" style="background-color: white; height: 70px" id="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html" style="margin-left: 30px">
+          <img src="assets/logo.svg" alt="logoimg" style="width: 25%" />
+          <span class="fs-3 p-2 mt-5" id="zcolor">TrustLine</span>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:550px">
+          <form class="d-flex" role="search" style="margin-left:100px; margin-top:15px">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" aria-current="page" href="Sign.html" id="link">
+                  <p class="menu">Signup</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" href="about.html" id="link">
+                  <p class="menu selected">About</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" aria-current="page" href="blogs.html" id="link">
+                  <p class="menu">Blogs</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="support.html" id="link">
+                  <p class="menu">Support</p>
+                </a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container mb-5 mt-5">
+      <div class="row text-center mb-5">
+        <h1 class="mb-3">About TrustLine</h1>
+        <p class="text-muted fs-5" style="max-width: 600px; margin: 0 auto;">Building the future of digital payments with innovation, security, and trust at the core.</p>
+      </div>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="container mb-5">
+      <div class="row p-5">
+        <div class="col-md-6">
+          <h2 class="mb-4">Our Mission</h2>
+          <p class="text-muted">We empower individuals and businesses to manage their finances with confidence. TrustLine simplifies digital payments, eliminates unnecessary friction, and provides real-time insights for smarter financial decisions.</p>
+          <p class="text-muted">Our mission is to democratize fintech—making secure, fast, and transparent financial services accessible to everyone, regardless of their technical background or financial literacy.</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="mb-4">Our Vision</h2>
+          <p class="text-muted">We envision a world where financial transactions are instantaneous, transparent, and accessible. Where trust is built through technology, not promises. Where every user can take control of their money and future.</p>
+          <p class="text-muted">TrustLine aims to be the go-to platform for digital payments, financial planning, and peer-to-peer transactions across India and beyond.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="container mb-5">
+      <h2 class="text-center mb-5">Our Core Values</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="value-card">
+            <h4 class="mb-3"><i class="fas fa-shield-alt" style="color: #387ED1; margin-right: 10px;"></i>Security First</h4>
+            <p class="text-muted">Bank-grade encryption, multi-factor authentication, and constant security audits ensure your money and data are always protected.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="value-card">
+            <h4 class="mb-3"><i class="fas fa-handshake" style="color: #387ED1; margin-right: 10px;"></i>Trust & Transparency</h4>
+            <p class="text-muted">We believe in open communication. Every transaction is trackable, every fee is disclosed, and user privacy is paramount.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="value-card">
+            <h4 class="mb-3"><i class="fas fa-lightbulb" style="color: #387ED1; margin-right: 10px;"></i>Innovation</h4>
+            <p class="text-muted">We continuously invest in cutting-edge technology to deliver faster, smarter, and more intuitive financial solutions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="value-card">
+            <h4 class="mb-3"><i class="fas fa-users" style="color: #387ED1; margin-right: 10px;"></i>User-Centric Design</h4>
+            <p class="text-muted">Every feature is built with the user in mind. We simplify complexity and make fintech accessible to everyone.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="value-card">
+            <h4 class="mb-3"><i class="fas fa-leaf" style="color: #387ED1; margin-right: 10px;"></i>Sustainability</h4>
+            <p class="text-muted">We are committed to ethical practices and responsible business growth that benefits society and the environment.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="value-card">
+            <h4 class="mb-3"><i class="fas fa-cogs" style="color: #387ED1; margin-right: 10px;"></i>Reliability</h4>
+            <p class="text-muted">24/7 uptime, instant transactions, and consistent performance you can depend on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose TrustLine -->
+    <div class="container mb-5">
+      <h2 class="text-center mb-5">Why Choose TrustLine?</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <h5 class="mb-3">✓ Lightning-Fast Transfers</h5>
+          <p class="text-muted">Send and receive money in seconds, not hours. Real-time processing with instant confirmations.</p>
+        </div>
+        <div class="col-md-6 mb-4">
+          <h5 class="mb-3">✓ Zero Hidden Fees</h5>
+          <p class="text-muted">Complete transparency. Know exactly what you're paying, always.</p>
+        </div>
+        <div class="col-md-6 mb-4">
+          <h5 class="mb-3">✓ Advanced Analytics</h5>
+          <p class="text-muted">Track your spending patterns, get personalized insights, and plan better financial decisions.</p>
+        </div>
+        <div class="col-md-6 mb-4">
+          <h5 class="mb-3">✓ Bank-Grade Security</h5>
+          <p class="text-muted">Your funds are protected with industry-leading encryption and real-time fraud detection.</p>
+        </div>
+        <div class="col-md-6 mb-4">
+          <h5 class="mb-3">✓ 24/7 Support</h5>
+          <p class="text-muted">Our dedicated support team is always ready to help with any questions or concerns.</p>
+        </div>
+        <div class="col-md-6 mb-4">
+          <h5 class="mb-3">✓ Developer-Friendly APIs</h5>
+          <p class="text-muted">Seamlessly integrate TrustLine into your applications with our comprehensive REST APIs.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="container mt-5 mb-5">
+      <div class="row text-center">
+        <h2>Ready to Experience TrustLine?</h2>
+        <p class="text-muted mt-3">Join thousands of users who trust us with their finances.</p>
+        <a class="nav-link active" aria-current="page" href="Sign.html" id="link"><button class="btn btn-primary fs-7 p-2 mb-5" style="width:12%">Sign up for free</button></a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background-color: rgb(240,240,240)">
+      <div class="container mt-5 border-top">
+        <div class="row mt-5">
+          <div class="col" style="margin-left:110px">
+            <img src="assets/logo.svg" alt="logoimg" style="width:50%" />
+            <p class="mt-4">© 2025 - current ,<br/> TrustLine E-Payment Ltd. All rights reserved.</p>
+          </div>
+          <div class="col">
+            <h5>Company</h5>
+            <p class="text-muted">About</p>
+            <p class="text-muted">Products</p>
+            <p class="text-muted">Pricing</p>
+            <p class="text-muted">Referral programme</p>
+            <p class="text-muted">Careers</p>
+            <p class="text-muted">TrustLine.tech</p>
+            <p class="text-muted">Open source</p>
+            <p class="text-muted">Press & media</p>
+            <p class="text-muted">TrustLine Cares (CSR)</p>
+          </div>
+          <div class="col">
+            <h5>Support</h5>
+            <p class="text-muted">Contact us</p>
+            <p class="text-muted">Support portal</p>
+            <p class="text-muted">Z-Connect blog</p>
+            <p class="text-muted">List of charges</p>
+            <p class="text-muted">Downloads & resources</p>
+            <p class="text-muted">Videos</p>
+            <p class="text-muted">Market overview</p>
+            <p class="text-muted">How to file a complaint?</p>
+            <p class="text-muted">Status of your complaints</p>
+          </div>
+          <div class="col">
+            <h5>Account</h5>
+            <p class="text-muted">Open an account</p>
+            <p class="text-muted">Fund transfer</p>
+          </div>
+        </div>
+        <div class="p-5 text-muted">
+          <p style="font-size:14px">TrustLine is a next-generation fintech platform built to simplify digital payments, peer-to-peer transfers, and financial tracking for individuals and businesses. Our mission is to make secure transactions accessible, transparent, and lightning-fast for everyone. <br />
+           We believe in building technology that empowers users—not overwhelms them. Whether you're a freelancer, merchant, or everyday user, TrustLine gives you the tools to manage your money with confidence<br />
+          </p>
+          <p style="font-size:14px"> TrustLine Technologies Pvt. Ltd. is a registered entity under the Companies Act, 2013. We comply with applicable financial regulations and data protection laws in India. Our payment services are built in accordance with RBI guidelines and industry standards.
+          </p>
+          <p style="font-size:14px">We are committed to transparency, ethical practices, and user-first design. Our systems undergo regular audits and penetration testing to ensure the highest level of security.
+          </p>
+        </div>
+        <div id="footerlast" class="text-muted">
+          <p style="font-size:13px;margin-right:20px">NSE </p>
+          <p style="font-size:13px;margin-right:20px">BSE </p>
+          <p style="font-size:13px;margin-right:20px">MCX </p>
+          <p style="font-size:13px;margin-right:20px">Terms & conditions </p>
+          <p style="font-size:13px;margin-right:20px">Policies & procedures </p>
+          <p style="font-size:13px;margin-right:20px">Privacy policy </p>
+          <p style="font-size:13px;margin-right:20px">Disclosure</p>
+          <p style="font-size:13px;margin-right:20px">For investor's attention </p>
+          <p style="font-size:13px;margin-right:20px">Investor charter</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustLine Landing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+          monospace;
+      }
+      #footerlast{
+        display: flex;
+        justify-content: center;
+      }
+      #navbar{
+        position: sticky;
+        top: 0px;
+      }
+      #link:hover{
+        color: #0D6EFD;
+      }
+      #zcolor{
+        color: #424242;
+      }
+      #colorw{
+        color: white;
+        margin-bottom: 20px;
+      }
+      .menu.selected {
+        color: #387ED1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom" style="background-color: white; height: 70px" id="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/" style="margin-left: 30px">
+          <img src="assets/logo.svg" alt="logoimg" style="width: 25%" />
+          <span class="fs-3 p-2 mt-5" id="zcolor">TrustLine</span>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:550px">
+          <form class="d-flex" role="search" style="margin-left:100px; margin-top:15px">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" aria-current="page" href="Sign.html" id="link">
+                  <p class="menu">Signup</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" href="about.html" id="link">
+                  <p class="menu">About</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" aria-current="page" href="blogs.html" id="link">
+                  <p class="menu">Blogs</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="support.html" id="link">
+                  <p class="menu">Support</p>
+                </a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 600px; display: flex; align-items: center; color: white; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(40px);"></div>
+      <div style="position: absolute; bottom: -30%; left: 10%; width: 300px; height: 300px; background: rgba(255,255,255,0.08); border-radius: 50%; filter: blur(40px);"></div>
+      
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 style="font-size: 56px; font-weight: 800; line-height: 1.2; margin-bottom: 20px;">Your Money.<br/>Your Control.</h1>
+            <p style="font-size: 18px; line-height: 1.8; margin-bottom: 30px; opacity: 0.95;">TrustLine is your secure gateway to seamless payments, smart transactions, and real-time financial insights. Banking made simple.</p>
+            
+            <div style="display: flex; gap: 15px; margin-bottom: 40px;">
+              <a href="Sign.html" style="text-decoration: none;">
+                <button style="background: white; color: #667eea; border: none; padding: 14px 40px; border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">Get Started Free</button>
+              </a>
+              <a href="about.html" style="text-decoration: none;">
+                <button style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 38px; border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">Learn More</button>
+              </a>
+            </div>
+
+            <div style="display: flex; gap: 30px; font-size: 14px;">
+              <div>
+                <div style="font-weight: 700; font-size: 18px;">✓ Bank-Grade Security</div>
+                <div style="opacity: 0.9; font-size: 13px;">RBI Compliant</div>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 18px;">✓ Zero Hidden Fees</div>
+                <div style="opacity: 0.9; font-size: 13px;">Transparent pricing</div>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 18px;">✓ Lightning Fast</div>
+                <div style="opacity: 0.9; font-size: 13px;">Instant transfers</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" style="position: relative;">
+            <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 20px; padding: 40px; border: 1px solid rgba(255,255,255,0.2);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; text-align: center;">
+                  <div style="font-size: 32px; margin-bottom: 10px;">⚡</div>
+                  <div style="font-weight: 700; margin-bottom: 5px;">Instant</div>
+                  <div style="font-size: 13px; opacity: 0.85;">Real-time transfers</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; text-align: center;">
+                  <div style="font-size: 32px; margin-bottom: 10px;">🔒</div>
+                  <div style="font-weight: 700; margin-bottom: 5px;">Secure</div>
+                  <div style="font-size: 13px; opacity: 0.85;">Bank-grade encryption</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; text-align: center;">
+                  <div style="font-size: 32px; margin-bottom: 10px;">📊</div>
+                  <div style="font-weight: 700; margin-bottom: 5px;">Smart</div>
+                  <div style="font-size: 13px; opacity: 0.85;">Analytics & insights</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; text-align: center;">
+                  <div style="font-size: 32px; margin-bottom: 10px;">💰</div>
+                  <div style="font-weight: 700; margin-bottom: 5px;">Zero Fees</div>
+                  <div style="font-size: 13px; opacity: 0.85;">No hidden charges</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Awards -->
+    <div class="container">
+      <div class="row">
+        <div class="col p-5">
+          <img src="assets/largestBroker.svg" alt="largest broker" />
+        </div>
+        <div class="col p-5 mt-5">
+          <h1 class="mb-3">Largest online transfer in India</h1>
+          <p>
+            "TrustLine made my payments smoother than ever. Love the dashboard!" – Priya S.<br/>
+"Secure, fast, and intuitive. A must-have for freelancers." – Aman R.
+
+          </p>
+          <div class="row mt-5">
+            <div class="col">
+              <ul>
+                <li class="mb-2">Bank-Grade Security</li>
+                <li class="mb-2">Commodity derivetives</li>
+                <li>CMD transaction</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul>
+                <li class="mb-2"> Instant Transfers</li>
+                <li class="mb-2">Real-Time Insights</li>
+                <li> Always Accessible</li>
+              </ul>
+            </div>
+            <img src="assets/pressLogos.png" alt="presslogos" style="width:90%" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works / Pricing -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-5 p-5">
+          <h1 class="mb-4">How TrustLine Works</h1>
+          <p class="mb-3 text-muted">
+           Step 1: Sign up and verify your account in minutes.<br/>
+Step 2: Link your bank or wallet securely.<br/>
+Step 3: Send, receive, and track transactions instantly.<br/>
+Step 4: Use analytics to plan smarter financial decisions.
+
+          </p>
+          <a href="/" style="text-decoration:none;font-size:18px">See in Detail <i class="fa-solid fa-arrow-right" style="margin-left:5px"></i></a>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5 p-5">
+          <div class="row text-center">
+            <div class="col border p-3">
+              <h1 class="mb-3">₹0</h1>
+              <p>No annual maintenance charges  or hidden fees.</p>
+            </div>
+            <div class="col border p-3">
+              <h1 class="mb-3">₹20</h1>
+              <p>Reward redemption fee  (flat, applied only when you cash out rewards)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col p-5">
+          <img src="assets/education.svg" alt="educationimg" />
+        </div>
+        <div class="col p-5">
+          <h1 class="mb-4">Free and open financial learning</h1>
+          <p class="text-muted">TrustLine Academy, a comprehensive digital learning hub covering everything from the basics of digital payments to advanced fintech tools and financial literacy. Learn at your own pace with interactive modules, guides, and case studies.</p>
+          <a href="/" style="text-decoration:none;font-size:18px">TrustLine Academy <i class="fa-solid fa-arrow-right" style="margin-left:5px"></i></a>
+          <p class="mt-4 text-muted">TrustLine Connect, an active community forum where users, merchants, and developers come together to discuss payments, fintech innovations, and financial best practices. Get answers to your queries, share insights, and learn from real-world experiences.</p>
+          <a href="/" style="text-decoration:none;font-size:18px">TrustLine Connect <i class="fa-solid fa-arrow-right" style="margin-left:5px"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open Account -->
+    <div class="container mt-5 mb-5">
+      <div class="row text-center">
+        <h1>Open a TrustLine account</h1>
+        <p class="text-muted">Join thousands who trust TrustLine for secure, smart, and scalable financial transactions.</p>
+        <a class="nav-link active" aria-current="page" href="Sign.html" id="link"><button class="btn btn-primary fs-7 p-2 mb-5" style="width:12%">Sign up for free</button></a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background-color: rgb(240,240,240)">
+      <div class="container mt-5 border-top">
+        <div class="row mt-5">
+          <div class="col" style="margin-left:110px">
+            <img src="assets/logo.svg" alt="logoimg" style="width:50%" />
+            <p class="mt-4">© 2025 - current ,<br/> TrustLine E-Payment Ltd. All rights reserved.</p>
+          </div>
+          <div class="col">
+            <h5>Company</h5>
+            <p class="text-muted">About</p>
+            <p class="text-muted">Products</p>
+            <p class="text-muted">Pricing</p>
+            <p class="text-muted">Referral programme</p>
+            <p class="text-muted">Careers</p>
+            <p class="text-muted">TrustLine.tech</p>
+            <p class="text-muted">Open source</p>
+            <p class="text-muted">Press & media</p>
+            <p class="text-muted">TrustLine Cares (CSR)</p>
+          </div>
+          <div class="col">
+            <h5>Support</h5>
+            <p class="text-muted"><a href="support.html" style="text-decoration:none; color: #666;">Contact us</a></p>
+            <p class="text-muted">Support portal</p>
+            <p class="text-muted">Z-Connect blog</p>
+            <p class="text-muted">List of charges</p>
+            <p class="text-muted">Downloads & resources</p>
+            <p class="text-muted">Videos</p>
+            <p class="text-muted">Market overview</p>
+            <p class="text-muted">How to file a complaint?</p>
+            <p class="text-muted">Status of your complaints</p>
+          </div>
+          <div class="col">
+            <h5>Account</h5>
+            <p class="text-muted">Open an account</p>
+            <p class="text-muted">Fund transfer</p>
+          </div>
+        </div>
+        <div class="p-5 text-muted">
+          <p style="font-size:14px">TrustLine is a next-generation fintech platform built to simplify digital payments, peer-to-peer transfers, and financial tracking for individuals and businesses. Our mission is to make secure transactions accessible, transparent, and lightning-fast for everyone. <br />
+           We believe in building technology that empowers users—not overwhelms them. Whether you're a freelancer, merchant, or everyday user, TrustLine gives you the tools to manage your money with confidence<br />
+          </p>
+          <p style="font-size:14px"> TrustLine Technologies Pvt. Ltd. is a registered entity under the Companies Act, 2013. We comply with applicable financial regulations and data protection laws in India. Our payment services are built in accordance with RBI guidelines and industry standards.
+          </p>
+          <p style="font-size:14px">We are committed to transparency, ethical practices, and user-first design. Our systems undergo regular audits and penetration testing to ensure the highest level of security.
+          </p>
+          <p style="font-size:14px">- TrustLine for Business – Tools for merchants, freelancers, and startups to manage payments and invoices.
+- TrustLine API – RESTful APIs for developers to embed payments, KYC, and transaction tracking.
+- TrustLine Vault – Secure document storage and digital identity verification.
+- TrustLine Insights – Analytics dashboard for spending trends and financial planning.
+
+          </p>
+          <p style="font-size:14px">- TrustLine Academy – Free courses on digital payments, budgeting, and fintech APIs.
+- Developer Certification – Get certified in TrustLine API integration.
+- Webinars & Workshops – Monthly sessions with our product and tech teams.
+
+            <br /> Help users find answers and connect.
+
+- Live Chat Support – Available 9 AM to 9 PM IST, Monday to Saturday.
+- Email Support – support@trustline.app
+- Community Forum – Ask questions, share feedback, and suggest features.
+- User Stories – How real people use TrustLine to simplify their finances
+
+          </p>
+        </div>
+        <div id="footerlast" class="text-muted">
+          <p style="font-size:13px;margin-right:20px">NSE </p>
+          <p style="font-size:13px;margin-right:20px">BSE </p>
+          <p style="font-size:13px;margin-right:20px">MCX </p>
+          <p style="font-size:13px;margin-right:20px">Terms & conditions </p>
+          <p style="font-size:13px;margin-right:20px">Policies & procedures </p>
+          <p style="font-size:13px;margin-right:20px">Privacy policy </p>
+          <p style="font-size:13px;margin-right:20px">Disclosure</p>
+          <p style="font-size:13px;margin-right:20px">For investor's attention </p>
+          <p style="font-size:13px;margin-right:20px">Investor charter</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </body>
+</html>

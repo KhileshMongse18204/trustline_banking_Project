@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cards — TrustLine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="CSS/Home_style.css">
+  <style>
+    .cards-page {
+      max-width: 1180px;
+      margin: 2rem auto;
+      padding: 0 1rem 2rem;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: var(--glass);
+      border: 1px solid var(--stroke);
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      text-decoration: none;
+    }
+
+    .cards-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .cards-hero,
+    .cards-section {
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+    }
+
+    .cards-hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .hero-copy {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: var(--glass);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .card-preview {
+      border-radius: 24px;
+      border: 1px solid var(--stroke);
+      padding: 1.3rem;
+      background:
+        radial-gradient(circle at top right, rgba(124,77,255,0.25), transparent 38%),
+        radial-gradient(circle at bottom left, rgba(0,229,255,0.20), transparent 42%),
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+    }
+
+    .card-top,
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .card-chip {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .card-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .card-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin: 1.35rem 0;
+      word-break: break-word;
+    }
+
+    .card-meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .card-meta strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+      word-break: break-word;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .stat-card {
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.05);
+      border-radius: 18px;
+      padding: 1rem;
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .control-card {
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.05);
+      border-radius: 18px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .control-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .control-header strong {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .control-header span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .toggle-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 82px;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid var(--stroke);
+      cursor: pointer;
+      background: var(--glass);
+      color: var(--text);
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .toggle-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .toggle-pill.on {
+      color: var(--green);
+      background: rgba(85, 239, 196, 0.08);
+      border-color: rgba(85, 239, 196, 0.18);
+    }
+
+    .toggle-pill.off {
+      color: #ff7b89;
+      background: rgba(255, 71, 87, 0.08);
+      border-color: rgba(255, 71, 87, 0.2);
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .insight-card {
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.05);
+      border-radius: 18px;
+      padding: 1rem;
+    }
+
+    .insight-card h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.98rem;
+      font-weight: 800;
+    }
+
+    .insight-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.25rem;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.85rem 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(90deg, var(--acc1), var(--acc2));
+      color: #0b0f17;
+      border: none;
+    }
+
+    .message-bar {
+      margin-top: 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      padding: 0.95rem 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .cards-hero {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .controls-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-top,
+      .card-bottom,
+      .control-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-title {
+        font-size: 1.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="Profile.html" class="back-btn" aria-label="Go back">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </a>
+
+  <div class="cards-page">
+    <div class="cards-shell">
+
+      <div class="cards-hero">
+        <div>
+          <div class="eyebrow">TrustLine card dashboard</div>
+          <h1 class="hero-title">Manage your demo card, controls, limits, and payment readiness.</h1>
+          <p class="hero-copy">
+            This page gives you a dedicated card area instead of showing a popup message.
+            You can view the linked bank, manage card controls, see limits, and monitor card readiness here.
+          </p>
+
+          <div class="hero-badges">
+            <div class="hero-badge" id="heroBadgeStatus">Card status: Pending</div>
+            <div class="hero-badge" id="heroBadgeType">Type: Virtual debit</div>
+            <div class="hero-badge" id="heroBadgeBank">Bank: Not linked</div>
+          </div>
+
+          <div class="actions-row">
+            <a href="bank-link.html" class="action-btn primary">Change Linked Bank</a>
+            <a href="Profile.html" class="action-btn">Back to Profile</a>
+          </div>
+        </div>
+
+        <div class="card-preview">
+          <div class="card-top">
+            <div class="card-label" id="cardTierText">TrustLine Virtual Debit</div>
+            <div class="card-chip" id="cardChipText">Awaiting setup</div>
+          </div>
+
+          <div class="card-number" id="cardMaskedNumber">•••• 0000</div>
+
+          <div class="card-bottom">
+            <div class="card-meta">
+              Linked bank
+              <strong id="cardLinkedBankText">No bank linked</strong>
+            </div>
+            <div class="card-meta" style="text-align:right;">
+              Card holder
+              <strong id="cardHolderText">User</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-section">
+        <h2 class="section-title">Card Snapshot</h2>
+        <p class="section-subtitle">
+          A quick summary of your TrustLine card profile and availability.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span>Card status</span>
+            <strong id="cardStatusText">Pending</strong>
+          </div>
+          <div class="stat-card">
+            <span>Daily limit</span>
+            <strong id="cardLimitText">₹0.00</strong>
+          </div>
+          <div class="stat-card">
+            <span>Linked account type</span>
+            <strong id="cardTypeText">Virtual debit</strong>
+          </div>
+          <div class="stat-card">
+            <span>Protection</span>
+            <strong id="cardProtectionText">Basic</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-section">
+        <h2 class="section-title">Card Controls</h2>
+        <p class="section-subtitle">
+          Enable or disable payment modes in this demo view.
+        </p>
+
+        <div class="controls-grid">
+          <div class="control-card">
+            <div class="control-header">
+              <div>
+                <strong>Online Payments</strong>
+                <span>Use card for websites and apps</span>
+              </div>
+              <button class="toggle-pill off" id="onlineToggle">Disabled</button>
+            </div>
+          </div>
+
+          <div class="control-card">
+            <div class="control-header">
+              <div>
+                <strong>Contactless</strong>
+                <span>Tap-and-pay in stores</span>
+              </div>
+              <button class="toggle-pill off" id="contactlessToggle">Disabled</button>
+            </div>
+          </div>
+
+          <div class="control-card">
+            <div class="control-header">
+              <div>
+                <strong>ATM Withdrawals</strong>
+                <span>Cash withdrawal on physical cards</span>
+              </div>
+              <button class="toggle-pill off" id="atmToggle">Disabled</button>
+            </div>
+          </div>
+
+          <div class="control-card">
+            <div class="control-header">
+              <div>
+                <strong>International Usage</strong>
+                <span>Use outside India for demo profile</span>
+              </div>
+              <button class="toggle-pill off" id="internationalToggle">Disabled</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-bar" id="controlMessage">
+          No linked bank found. Link a bank account first to activate your card controls.
+        </div>
+
+        <div class="actions-row">
+          <a href="qr_pay.html" class="action-btn primary">Manage Cards</a>
+          <button type="button" class="action-btn" id="cardControlsBtn">Card Controls</button>
+        </div>
+      </div>
+
+      <div class="cards-section">
+        <h2 class="section-title">Insights</h2>
+        <p class="section-subtitle">
+          Additional summary about your card readiness and usage.
+        </p>
+
+        <div class="insights-grid">
+          <div class="insight-card">
+            <h4>Best for daily spending</h4>
+            <p id="insightSpending">
+              Your current card is not active yet. Link a primary bank to unlock everyday spending features.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <h4>Security posture</h4>
+            <p id="insightSecurity">
+              Demo card security will update automatically once a linked bank is found.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <h4>Recommended next step</h4>
+            <p id="insightNext">
+              Visit the bank linking page and connect your account first.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const DEMO_CARD = {
+      tier: 'TrustLine Virtual Debit',
+      type: 'Virtual debit',
+      limit: '₹0.00',
+      protection: 'Basic',
+      status: 'Pending',
+      chip: 'Awaiting setup'
+    };
+
+    function safeJsonParse(key, fallback = []) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function getPrimaryBank() {
+      const linkedBanks = safeJsonParse('trustline_linked_banks', []);
+      if (!Array.isArray(linkedBanks) || !linkedBanks.length) return null;
+
+      const bank = linkedBanks[0];
+      const bankName = bank.bankName || bank.name || 'Linked Bank';
+      const accountNumber = String(bank.accountNumber || bank.account_number || '');
+      const last4 = accountNumber ? accountNumber.slice(-4) : '0000';
+
+      return {
+        bankName,
+        accountHolder: bank.accountHolder || bank.account_holder || 'User',
+        accountType: bank.accountType || bank.account_type || 'Savings',
+        last4,
+        balance: Number(bank.balance || 9000)
+      };
+    }
+
+    function setToggleState(button, enabled) {
+      button.classList.remove('on', 'off');
+      button.classList.add(enabled ? 'on' : 'off');
+      button.textContent = enabled ? 'Enabled' : 'Disabled';
+    }
+
+    function toggleButtonState(button) {
+      const isOn = button.classList.contains('on');
+      setToggleState(button, !isOn);
+    }
+
+    function initCardsPage() {
+      const bank = getPrimaryBank();
+
+      const tierText = document.getElementById('cardTierText');
+      const chipText = document.getElementById('cardChipText');
+      const maskedNumber = document.getElementById('cardMaskedNumber');
+      const linkedBankText = document.getElementById('cardLinkedBankText');
+      const cardHolderText = document.getElementById('cardHolderText');
+      const cardStatusText = document.getElementById('cardStatusText');
+      const cardLimitText = document.getElementById('cardLimitText');
+      const cardTypeText = document.getElementById('cardTypeText');
+      const cardProtectionText = document.getElementById('cardProtectionText');
+
+      const heroBadgeStatus = document.getElementById('heroBadgeStatus');
+      const heroBadgeType = document.getElementById('heroBadgeType');
+      const heroBadgeBank = document.getElementById('heroBadgeBank');
+
+      const onlineToggle = document.getElementById('onlineToggle');
+      const contactlessToggle = document.getElementById('contactlessToggle');
+      const atmToggle = document.getElementById('atmToggle');
+      const internationalToggle = document.getElementById('internationalToggle');
+
+      const controlMessage = document.getElementById('controlMessage');
+      const insightSpending = document.getElementById('insightSpending');
+      const insightSecurity = document.getElementById('insightSecurity');
+      const insightNext = document.getElementById('insightNext');
+
+      const cardControlsBtn = document.getElementById('cardControlsBtn');
+
+      tierText.textContent = DEMO_CARD.tier;
+      cardTypeText.textContent = DEMO_CARD.type;
+
+      if (!bank) {
+        chipText.textContent = DEMO_CARD.chip;
+        maskedNumber.textContent = '•••• 0000';
+        linkedBankText.textContent = 'No bank linked';
+        cardHolderText.textContent = 'User';
+        cardStatusText.textContent = DEMO_CARD.status;
+        cardLimitText.textContent = DEMO_CARD.limit;
+        cardProtectionText.textContent = DEMO_CARD.protection;
+
+        heroBadgeStatus.textContent = 'Card status: Pending';
+        heroBadgeType.textContent = 'Type: Virtual debit';
+        heroBadgeBank.textContent = 'Bank: Not linked';
+
+        setToggleState(onlineToggle, false);
+        setToggleState(contactlessToggle, false);
+        setToggleState(atmToggle, false);
+        setToggleState(internationalToggle, false);
+
+        controlMessage.textContent = 'No linked bank found. Link a bank account first to activate your card controls.';
+        insightSpending.textContent = 'Your current card is not active yet. Link a primary bank to unlock everyday spending features.';
+        insightSecurity.textContent = 'Demo card security will update automatically once a linked bank is found.';
+        insightNext.textContent = 'Visit the bank linking page and connect your account first.';
+      } else {
+        chipText.textContent = 'Protected';
+        maskedNumber.textContent = `•••• ${bank.last4}`;
+        linkedBankText.textContent = bank.bankName;
+        cardHolderText.textContent = bank.accountHolder;
+        cardStatusText.textContent = 'Active';
+        cardLimitText.textContent = '₹1,00,000/day';
+        cardTypeText.textContent = `${bank.accountType} linked card`;
+        cardProtectionText.textContent = 'High';
+
+        heroBadgeStatus.textContent = 'Card status: Active';
+        heroBadgeType.textContent = `Type: ${bank.accountType} linked`;
+        heroBadgeBank.textContent = `Bank: ${bank.bankName}`;
+
+        setToggleState(onlineToggle, true);
+        setToggleState(contactlessToggle, true);
+        setToggleState(atmToggle, true);
+        setToggleState(internationalToggle, false);
+
+        controlMessage.textContent = `${bank.bankName} is linked. You can use this demo card for online and contactless payments.`;
+        insightSpending.textContent = `${bank.accountType} linked card is ready for regular digital payments and merchant checkout flows.`;
+        insightSecurity.textContent = 'Your card is protected with demo controls, masked number display, and toggle-based payment permissions.';
+        insightNext.textContent = 'Use Card Controls to manage payment modes or open QR pay from Manage Cards.';
+      }
+
+      onlineToggle.addEventListener('click', () => toggleButtonState(onlineToggle));
+      contactlessToggle.addEventListener('click', () => toggleButtonState(contactlessToggle));
+      atmToggle.addEventListener('click', () => toggleButtonState(atmToggle));
+      internationalToggle.addEventListener('click', () => toggleButtonState(internationalToggle));
+
+      cardControlsBtn.addEventListener('click', () => {
+        toggleButtonState(onlineToggle);
+        toggleButtonState(contactlessToggle);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', initCardsPage);
+  </script>
+</body>
+</html>

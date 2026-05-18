@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link Bank Account — TrustLine</title>
+  <link rel="icon" href="assets/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef7ff',
+              100: '#d9efff',
+              200: '#bce1ff',
+              300: '#8dcbff',
+              400: '#57acff',
+              500: '#2b8cff',
+              600: '#106dff',
+              700: '#0b57d0',
+              800: '#1049a7',
+              900: '#133f82',
+            },
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2, 6, 23, 0.08)',
+            glow: '0 10px 30px rgba(16,109,255,0.18)',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <div class="min-h-screen bg-[radial-gradient(circle_at_top_right,_rgba(43,140,255,0.12),_transparent_26%),radial-gradient(circle_at_bottom_left,_rgba(16,109,255,0.10),_transparent_30%)]">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+      <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-3">
+          <button
+            onclick="window.location.href='Home.html'"
+            class="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-soft transition hover:-translate-y-0.5"
+            aria-label="Back to Home"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-soft">
+            <img src="assets/logo.svg" alt="TrustLine" class="h-8 w-8" />
+            <div>
+              <p class="text-sm font-semibold text-slate-500">TrustLine</p>
+              <h1 class="text-lg font-bold text-slate-900">Link Bank Account</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+          Demo Mode • Mock Secure Flow
+        </div>
+      </div>
+
+      <!-- Top Hero Card -->
+      <div class="mb-6 overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-soft">
+        <div class="grid gap-0 lg:grid-cols-[1.2fr_0.8fr]">
+          <!-- Left part stays same -->
+          <div class="p-6 sm:p-8 lg:p-10">
+            <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
+              Multi-step user form
+            </span>
+            <h2 class="mt-4 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
+              Link your bank account with a simple and friendly step-by-step flow.
+            </h2>
+            <p class="mt-4 max-w-2xl text-base leading-8 text-slate-600">
+              This page is designed for your payment demo project. Users can choose a bank, enter account details,
+              set a PIN code, review everything once, and then link the account in a clean experience.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <div class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">Choose bank</div>
+              <div class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">Enter details</div>
+              <div class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">Set PIN code</div>
+              <div class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">Review & link</div>
+            </div>
+          </div>
+
+          <!-- Right dark part with Linked Accounts -->
+          <div class="flex flex-col bg-slate-900 p-6 text-white sm:p-8">
+            <div class="mb-5 flex items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
+                  Saved accounts
+                </p>
+                <h3 class="mt-2 text-2xl font-extrabold text-white">
+                  Linked Accounts
+                </h3>
+                <p class="mt-2 text-sm leading-6 text-slate-400">
+                  Accounts linked in this demo will appear here.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center">
+                <p class="text-xs font-medium text-slate-400">Total</p>
+                <p id="linkedCount" class="mt-1 text-2xl font-extrabold text-white">0</p>
+              </div>
+            </div>
+
+            <div id="linkedAccountsBoard" class="space-y-3 overflow-y-auto pr-1" style="max-height: 320px;">
+              <div class="rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-slate-400">
+                No linked bank accounts yet.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form Card -->
+      <div class="rounded-[28px] border border-slate-200 bg-white p-5 shadow-soft sm:p-6">
+        <div class="mb-6 flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">New Bank Linking</h3>
+            <p class="mt-1 text-sm text-slate-500">Complete each step to link the account.</p>
+          </div>
+          <div class="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
+            Step <span id="stepNumber">1</span> of 4
+          </div>
+        </div>
+
+        <div class="mb-8 grid gap-3 sm:grid-cols-4">
+          <div id="stepCard1" class="rounded-2xl border border-brand-200 bg-brand-50 p-4">
+            <div class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">1</div>
+            <p class="font-semibold text-slate-900">Choose Bank</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">Pick the bank you want to link</p>
+          </div>
+
+          <div id="stepCard2" class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-300 text-sm font-bold text-slate-700">2</div>
+            <p class="font-semibold text-slate-900">Account Details</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">Enter holder, mobile, IFSC</p>
+          </div>
+
+          <div id="stepCard3" class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-300 text-sm font-bold text-slate-700">3</div>
+            <p class="font-semibold text-slate-900">Set PIN Code</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">Create a 4-digit PIN</p>
+          </div>
+
+          <div id="stepCard4" class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-300 text-sm font-bold text-slate-700">4</div>
+            <p class="font-semibold text-slate-900">Review & Link</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">Confirm and save account</p>
+          </div>
+        </div>
+
+        <form id="bankForm">
+          <section id="step1" class="step-panel">
+            <div class="mb-5">
+              <label class="mb-2 block text-sm font-semibold text-slate-700">Search bank</label>
+              <input
+                id="bankSearch"
+                type="text"
+                placeholder="Search bank name like SBI, HDFC, ICICI..."
+                class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-brand-400 focus:bg-white"
+              />
+            </div>
+
+            <div id="bankGrid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></div>
+          </section>
+
+          <section id="step2" class="step-panel hidden">
+            <div class="mb-5 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-3 text-sm font-medium text-brand-800">
+              Selected bank:
+              <span id="selectedBankLabel" class="font-bold">—</span>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label class="mb-2 block text-sm font-semibold text-slate-700">Account holder name</label>
+                <input id="accountHolder" type="text" placeholder="Enter full name"
+                  class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-brand-400 focus:bg-white" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold text-slate-700">Registered mobile number</label>
+                <input id="mobileNumber" type="tel" maxlength="10" placeholder="10-digit mobile number"
+                  class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-brand-400 focus:bg-white" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold text-slate-700">Account number</label>
+                <input id="accountNumber" type="text" placeholder="Enter account number"
+                  class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-brand-400 focus:bg-white" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold text-slate-700">IFSC code</label>
+                <input id="ifscCode" type="text" placeholder="Example: SBIN0001234"
+                  class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm uppercase outline-none transition focus:border-brand-400 focus:bg-white" />
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="mb-2 block text-sm font-semibold text-slate-700">Account type</label>
+                <select id="accountType"
+                  class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-brand-400 focus:bg-white">
+                  <option value="">Select account type</option>
+                  <option value="Savings">Savings Account</option>
+                  <option value="Current">Current Account</option>
+                  <option value="Salary">Salary Account</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-7 text-slate-600">
+              This is a demo bank linking screen. No real banking or UPI action happens here.
+            </div>
+          </section>
+
+          <section id="step3" class="step-panel hidden">
+            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="text-lg font-bold text-slate-900">Set your bank PIN</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Create a 4-digit PIN for this bank account. You will use this PIN to authorise transactions.
+              </p>
+
+              <div class="mt-6 flex flex-col gap-4 sm:max-w-xs">
+                <div>
+                  <label class="mb-2 block text-sm font-semibold text-slate-700">Enter 4-digit PIN</label>
+                  <div class="flex gap-3">
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="mb-2 block text-sm font-semibold text-slate-700">Confirm PIN</label>
+                  <div class="flex gap-3">
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-confirm-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-confirm-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-confirm-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                    <input maxlength="1" type="password" inputmode="numeric" class="pin-confirm-input h-14 w-14 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold outline-none focus:border-brand-400 focus:bg-white transition" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-2xl bg-brand-50 px-4 py-3 text-sm font-medium text-brand-800">
+                🔒 Your PIN is stored securely and will be used to verify future transactions on this account.
+              </div>
+            </div>
+          </section>
+
+          <section id="step4" class="step-panel hidden">
+            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="text-lg font-bold text-slate-900">Review your details</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Please review everything once before linking the account.
+              </p>
+
+              <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span class="text-sm text-slate-500">Bank</span>
+                  <strong id="reviewBank" class="text-sm text-slate-900">—</strong>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span class="text-sm text-slate-500">Account holder</span>
+                  <strong id="reviewHolder" class="text-sm text-slate-900">—</strong>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span class="text-sm text-slate-500">Mobile</span>
+                  <strong id="reviewMobile" class="text-sm text-slate-900">—</strong>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span class="text-sm text-slate-500">Account number</span>
+                  <strong id="reviewAccount" class="text-sm text-slate-900">—</strong>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span class="text-sm text-slate-500">IFSC</span>
+                  <strong id="reviewIfsc" class="text-sm text-slate-900">—</strong>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span class="text-sm text-slate-500">Account type</span>
+                  <strong id="reviewType" class="text-sm text-slate-900">—</strong>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 sm:col-span-2">
+                  <span class="text-sm text-slate-500">Bank PIN</span>
+                  <strong id="reviewPin" class="text-sm font-mono tracking-[0.3em] text-slate-900">••••</strong>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-3 text-sm font-medium text-brand-800">
+                After confirmation, this bank account will be added to your linked accounts list.
+              </div>
+            </div>
+          </section>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
+            <button
+              type="button"
+              id="prevBtn"
+              class="hidden rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
+            >
+              Back
+            </button>
+
+            <div class="ml-auto flex flex-wrap gap-3">
+              <button
+                type="button"
+                id="resetBtn"
+                class="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
+              >
+                Reset
+              </button>
+
+              <button
+                type="button"
+                id="nextBtn"
+                class="rounded-2xl bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-700"
+              >
+                Continue
+              </button>
+
+              <button
+                type="button"
+                id="confirmBtn"
+                class="hidden rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-emerald-700"
+              >
+                Link Bank Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="toast"
+        class="pointer-events-none fixed bottom-5 right-5 hidden rounded-2xl border border-emerald-200 bg-white px-5 py-4 shadow-soft"
+      >
+        <p id="toastTitle" class="font-bold text-slate-900">Success</p>
+        <p id="toastText" class="mt-1 text-sm text-slate-600">Bank linked successfully.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const banks = [
+      {
+        name: 'State Bank of India',
+        short: 'SBI',
+        meta: 'Popular public sector bank',
+        logo: 'https://logo.clearbit.com/sbi.co.in'
+      },
+      {
+        name: 'HDFC Bank',
+        short: 'HDFC',
+        meta: 'Trusted private bank',
+        logo: 'https://logo.clearbit.com/hdfcbank.com'
+      },
+      {
+        name: 'ICICI Bank',
+        short: 'ICICI',
+        meta: 'Fast retail banking',
+        logo: 'https://logo.clearbit.com/icicibank.com'
+      },
+      {
+        name: 'Axis Bank',
+        short: 'AXIS',
+        meta: 'Common payment bank option',
+        logo: 'https://logo.clearbit.com/axisbank.com'
+      },
+      {
+        name: 'Bank of Baroda',
+        short: 'BOB',
+        meta: 'National banking network',
+        logo: 'https://logo.clearbit.com/bankofbaroda.in'
+      },
+      {
+        name: 'Punjab National Bank',
+        short: 'PNB',
+        meta: 'Wide branch coverage',
+        logo: 'https://logo.clearbit.com/pnbindia.in'
+      },
+      {
+        name: 'Kotak Mahindra Bank',
+        short: 'KOTAK',
+        meta: 'Private bank users',
+        logo: 'https://logo.clearbit.com/kotak.com'
+      },
+      {
+        name: 'Canara Bank',
+        short: 'CAN',
+        meta: 'Popular savings bank',
+        logo: 'https://logo.clearbit.com/canarabank.com'
+      }
+    ];
+
+    const STORAGE_KEY = 'trustline_linked_banks';
+    let currentStep = 1;
+    let selectedBank = null;
+
+    const bankGrid = document.getElementById('bankGrid');
+    const bankSearch = document.getElementById('bankSearch');
+    const selectedBankLabel = document.getElementById('selectedBankLabel');
+    const linkedCount = document.getElementById('linkedCount');
+    const linkedAccountsBoard = document.getElementById('linkedAccountsBoard');
+
+    const accountHolder = document.getElementById('accountHolder');
+    const mobileNumber = document.getElementById('mobileNumber');
+    const accountNumber = document.getElementById('accountNumber');
+    const ifscCode = document.getElementById('ifscCode');
+    const accountType = document.getElementById('accountType');
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const stepNumber = document.getElementById('stepNumber');
+
+    const reviewBank = document.getElementById('reviewBank');
+    const reviewHolder = document.getElementById('reviewHolder');
+    const reviewMobile = document.getElementById('reviewMobile');
+    const reviewAccount = document.getElementById('reviewAccount');
+    const reviewIfsc = document.getElementById('reviewIfsc');
+    const reviewType = document.getElementById('reviewType');
+
+    const pinInputs = document.querySelectorAll('.pin-input');
+    const pinConfirmInputs = document.querySelectorAll('.pin-confirm-input');
+    const reviewPin = document.getElementById('reviewPin');
+
+    function getLinkedBanks() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    }
+
+    function saveLinkedBanks(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function maskAccountNumber(number) {
+      if (!number) return '—';
+      if (number.length <= 4) return number;
+      return '••••••' + number.slice(-4);
+    }
+
+    function showToast(title, text) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastText').textContent = text;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2500);
+    }
+
+    function normalizeBankText(value) {
+      return String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/&/g, 'and')
+        .replace(/\s+/g, ' ');
+    }
+
+    function findBankConfig(bankName, shortCode = '') {
+      const normalizedName = normalizeBankText(bankName);
+      const normalizedShort = normalizeBankText(shortCode);
+
+      return (
+        banks.find(bank => normalizeBankText(bank.name) === normalizedName) ||
+        banks.find(bank => normalizeBankText(bank.short) === normalizedShort) ||
+        banks.find(bank => normalizedName && normalizeBankText(bank.name).includes(normalizedName)) ||
+        banks.find(bank => normalizedName && normalizedName.includes(normalizeBankText(bank.short))) ||
+        null
+      );
+    }
+
+    function getBankLogoMarkup(bank, sizeClass = 'h-14 w-14', imageClass = 'h-9 w-9', fallbackText = '') {
+      const shortText = fallbackText || bank.short || 'BANK';
+      return `
+        <div class="flex ${sizeClass} shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <img
+            src="${bank.logo || ''}"
+            alt="${bank.name} logo"
+            class="${imageClass} object-contain"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <span class="hidden h-full w-full items-center justify-center bg-gradient-to-br from-brand-500 to-brand-700 text-[11px] font-extrabold text-white">
+            ${shortText}
+          </span>
+        </div>
+      `;
+    }
+
+    function renderBanks(list) {
+      bankGrid.innerHTML = '';
+      if (!list.length) {
+        bankGrid.innerHTML = `
+          <div class="sm:col-span-2 lg:col-span-3 rounded-2xl border border-dashed border-slate-300 px-4 py-5 text-sm text-slate-500">
+            No matching banks found.
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(bank => {
+        const isSelected = selectedBank && selectedBank.name === bank.name;
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className =
+          'flex items-center gap-4 rounded-3xl border px-4 py-4 text-left transition hover:-translate-y-0.5 ' +
+          (isSelected
+            ? 'border-brand-300 bg-brand-50 shadow-soft'
+            : 'border-slate-200 bg-slate-50 hover:bg-white');
+
+        card.innerHTML = `
+          ${getBankLogoMarkup(bank, 'h-14 w-14', 'h-9 w-9', bank.short)}
+          <div class="min-w-0">
+            <div class="font-semibold text-slate-900">${bank.name}</div>
+            <div class="mt-1 text-sm text-slate-500">${bank.meta}</div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          selectedBank = bank;
+          selectedBankLabel.textContent = bank.name;
+          renderBanks(filterBanks(bankSearch.value));
+        });
+
+        bankGrid.appendChild(card);
+      });
+    }
+
+    function filterBanks(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return banks;
+      return banks.filter(
+        b =>
+          b.name.toLowerCase().includes(q) ||
+          b.short.toLowerCase().includes(q) ||
+          b.meta.toLowerCase().includes(q)
+      );
+    }
+
+    function updateStepUI() {
+      stepNumber.textContent = currentStep;
+
+      for (let i = 1; i <= 4; i++) {
+        const panel = document.getElementById('step' + i);
+        const card = document.getElementById('stepCard' + i);
+        const circle = card.querySelector('div');
+
+        panel.classList.add('hidden');
+        card.className = 'rounded-2xl border p-4';
+
+        if (i < currentStep) {
+          card.classList.add('border-emerald-200', 'bg-emerald-50');
+          circle.className = 'mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white';
+        } else if (i === currentStep) {
+          card.classList.add('border-brand-200', 'bg-brand-50');
+          circle.className = 'mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white';
+        } else {
+          card.classList.add('border-slate-200', 'bg-slate-50');
+          circle.className = 'mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-300 text-sm font-bold text-slate-700';
+        }
+      }
+
+      document.getElementById('step' + currentStep).classList.remove('hidden');
+
+      prevBtn.classList.toggle('hidden', currentStep === 1);
+      nextBtn.classList.toggle('hidden', currentStep === 4);
+      confirmBtn.classList.toggle('hidden', currentStep !== 4);
+    }
+
+    function validateStep1() {
+      if (!selectedBank) {
+        showToast('Select bank', 'Please choose a bank first.');
+        return false;
+      }
+      return true;
+    }
+
+    function validateStep2() {
+      if (!accountHolder.value.trim()) {
+        showToast('Missing name', 'Please enter account holder name.');
+        return false;
+      }
+      if (!/^[0-9]{10}$/.test(mobileNumber.value.trim())) {
+        showToast('Invalid mobile', 'Please enter a valid 10-digit mobile number.');
+        return false;
+      }
+      if (accountNumber.value.trim().length < 8) {
+        showToast('Invalid account', 'Please enter a valid account number.');
+        return false;
+      }
+      if (ifscCode.value.trim().length < 6) {
+        showToast('Invalid IFSC', 'Please enter a valid IFSC code.');
+        return false;
+      }
+      if (!accountType.value) {
+        showToast('Choose type', 'Please select an account type.');
+        return false;
+      }
+      return true;
+    }
+
+    function validateStep3() {
+      const pin = Array.from(pinInputs).map(input => input.value).join('');
+      const confirmPin = Array.from(pinConfirmInputs).map(input => input.value).join('');
+      if (pin.length !== 4) {
+        showToast('Enter PIN', 'Please enter a 4-digit PIN.');
+        return false;
+      }
+      if (!/^\d{4}$/.test(pin)) {
+        showToast('Invalid PIN', 'PIN must contain only digits.');
+        return false;
+      }
+      if (pin !== confirmPin) {
+        showToast('PIN mismatch', 'PINs do not match. Please try again.');
+        pinConfirmInputs.forEach(i => { i.value = ''; i.classList.add('border-red-400'); });
+        pinInputs[0].focus();
+        return false;
+      }
+      pinConfirmInputs.forEach(i => i.classList.remove('border-red-400'));
+      return true;
+    }
+
+    function fillReview() {
+      reviewBank.textContent = selectedBank ? selectedBank.name : '—';
+      reviewHolder.textContent = accountHolder.value.trim() || '—';
+      reviewMobile.textContent = mobileNumber.value.trim() || '—';
+      reviewAccount.textContent = maskAccountNumber(accountNumber.value.trim());
+      reviewIfsc.textContent = ifscCode.value.trim().toUpperCase() || '—';
+      reviewType.textContent = accountType.value || '—';
+      const pin = Array.from(pinInputs).map(input => input.value).join('');
+      reviewPin.textContent = pin.length === 4 ? '••••' : '—';
+    }
+
+    async function fetchApiBanks() {
+      try {
+        const res = await fetch('/api/banks/my', {
+          credentials: 'include'
+        });
+        if (res.ok) {
+          const data = await res.json();
+          return data.banks || [];
+        }
+      } catch (e) {
+        console.warn('Could not fetch API banks:', e);
+      }
+      return [];
+    }
+
+    function convertApiBankToLocal(apiBank) {
+      const accountNum = apiBank.account_number || '';
+      const matchedBank = findBankConfig(apiBank.bank_name || apiBank.name, apiBank.short);
+      const short = matchedBank?.short || apiBank.short || (apiBank.bank_name ? apiBank.bank_name.substring(0, 4).toUpperCase() : 'BANK');
+
+      return {
+        bankName: apiBank.bank_name || apiBank.name || 'Unknown Bank',
+        short: short,
+        logo: matchedBank?.logo || '',
+        accountHolder: apiBank.account_holder || '',
+        accountNumber: accountNum,
+        ifscCode: apiBank.ifsc_code || '',
+        accountType: apiBank.account_type || 'Savings',
+        isFromApi: true,
+        apiId: apiBank.id,
+      };
+    }
+
+    async function getAllLinkedBanks() {
+      const localBanks = getLinkedBanks();
+      const apiBanks = await fetchApiBanks();
+      const convertedApiBanks = apiBanks.map(convertApiBankToLocal);
+      const merged = [...convertedApiBanks, ...localBanks];
+      const seen = new Set();
+
+      return merged.filter(bank => {
+        const key = bank.apiId || bank.accountNumber;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    async function renderLinkedAccounts() {
+      const items = await getAllLinkedBanks();
+      linkedCount.textContent = items.length;
+      linkedAccountsBoard.innerHTML = '';
+
+      if (!items.length) {
+        linkedAccountsBoard.innerHTML = `
+          <div class="rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-slate-400">
+            No linked bank accounts yet.
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach((item, index) => {
+        const matchedBank = findBankConfig(item.bankName, item.short);
+        const logoBank = {
+          name: item.bankName,
+          short: item.short || matchedBank?.short || 'BANK',
+          logo: item.logo || matchedBank?.logo || ''
+        };
+
+        const card = document.createElement('div');
+        card.className = 'rounded-3xl border border-white/10 bg-white/5 p-5';
+        card.innerHTML = `
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div class="min-w-0">
+              <div class="flex items-center gap-3">
+                ${getBankLogoMarkup(logoBank, 'h-12 w-12', 'h-8 w-8', logoBank.short)}
+                <div>
+                  <p class="truncate text-base font-bold text-white">${item.bankName}</p>
+                  <p class="mt-1 text-sm text-slate-300">${item.accountHolder}</p>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">${maskAccountNumber(item.accountNumber)} • ${item.accountType}</p>
+            </div>
+
+            <button
+              type="button"
+              data-index="${index}"
+              class="remove-btn rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10"
+            >
+              Remove
+            </button>
+          </div>
+        `;
+        linkedAccountsBoard.appendChild(card);
+      });
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', async e => {
+          const index = Number(e.target.dataset.index);
+          const items = getLinkedBanks();
+          items.splice(index, 1);
+          saveLinkedBanks(items);
+          await renderLinkedAccounts();
+          showToast('Removed', 'Linked bank account removed.');
+        });
+      });
+    }
+
+    async function resetForm() {
+      currentStep = 1;
+      selectedBank = null;
+      bankSearch.value = '';
+      selectedBankLabel.textContent = '—';
+
+      accountHolder.value = '';
+      mobileNumber.value = '';
+      accountNumber.value = '';
+      ifscCode.value = '';
+      accountType.value = '';
+
+      pinInputs.forEach(input => (input.value = ''));
+      pinConfirmInputs.forEach(input => { input.value = ''; input.classList.remove('border-red-400'); });
+
+      renderBanks(banks);
+      await renderLinkedAccounts();
+      updateStepUI();
+      fillReview();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (currentStep === 1 && !validateStep1()) return;
+      if (currentStep === 2 && !validateStep2()) return;
+      if (currentStep === 3 && !validateStep3()) return;
+
+      if (currentStep < 4) currentStep++;
+
+      if (currentStep === 3) {
+        pinInputs[0].focus();
+      }
+      if (currentStep === 4) {
+        fillReview();
+      }
+
+      updateStepUI();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 1) currentStep--;
+      updateStepUI();
+    });
+
+    async function linkBankToApi() {
+      const pin = Array.from(pinInputs).map(input => input.value).join('');
+      const payload = {
+        bankName: selectedBank.name,
+        accountHolder: accountHolder.value.trim(),
+        accountNumber: accountNumber.value.trim(),
+        ifscCode: ifscCode.value.trim().toUpperCase(),
+        upiId: `${accountHolder.value.trim().toLowerCase().replace(/\s+/g, '')}@${selectedBank.short.toLowerCase()}`,
+        phoneNumber: mobileNumber.value.trim(),
+        pin: pin,
+        openingBalance: 0,
+      };
+      try {
+        const res = await fetch('/api/banks/link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          if (err.error === 'This account is already linked') {
+            return { alreadyLinked: true };
+          }
+          throw new Error(err.error || 'Failed to link bank');
+        }
+        return { success: true };
+      } catch (e) {
+        console.error('API link failed:', e);
+        return { success: false, error: e.message };
+      }
+    }
+
+    confirmBtn.addEventListener('click', async () => {
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Linking...';
+
+      const pin = Array.from(pinInputs).map(input => input.value).join('');
+      const linked = getLinkedBanks();
+
+      linked.unshift({
+        bankName: selectedBank.name,
+        short: selectedBank.short,
+        logo: selectedBank.logo,
+        accountHolder: accountHolder.value.trim(),
+        mobileNumber: mobileNumber.value.trim(),
+        accountNumber: accountNumber.value.trim(),
+        ifscCode: ifscCode.value.trim().toUpperCase(),
+        accountType: accountType.value,
+        pin: pin,
+        linkedAt: new Date().toISOString(),
+      });
+
+      saveLinkedBanks(linked);
+
+      const apiResult = await linkBankToApi();
+
+      if (apiResult.alreadyLinked) {
+        showToast('Already linked', selectedBank.name + ' account is already linked to your account.');
+      } else if (apiResult.success) {
+        showToast('Success', selectedBank.name + ' linked successfully.');
+      } else {
+        showToast('Saved locally', selectedBank.name + ' saved locally. (API unavailable)');
+      }
+
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = 'Link Bank Account';
+      resetForm();
+    });
+
+    resetBtn.addEventListener('click', resetForm);
+
+    bankSearch.addEventListener('input', e => {
+      renderBanks(filterBanks(e.target.value));
+    });
+
+    function setupPinBoxes(inputs) {
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', e => {
+          e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 1);
+          if (e.target.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener('keydown', e => {
+          if (e.key === 'Backspace' && !input.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+    }
+
+    setupPinBoxes(Array.from(pinInputs));
+    setupPinBoxes(Array.from(pinConfirmInputs));
+
+    renderBanks(banks);
+    (async () => {
+      await renderLinkedAccounts();
+    })();
+    fillReview();
+    updateStepUI();
+  </script>
+</body>
+</html>

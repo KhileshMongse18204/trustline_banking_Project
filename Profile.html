@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile — TrustLine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="CSS/Home_style.css">
+</head>
+<body>
+  <a
+    href="Home.html"
+    aria-label="Go back"
+    style="position:fixed; top:16px; left:16px; width:54px; height:54px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:16px; color:var(--text); text-decoration:none; z-index:100;"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </a>
+
+  <div style="max-width:1380px; margin:28px auto; padding:0 16px;">
+    <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+      <!-- Sidebar -->
+      <div
+  style="width:320px; min-width:280px; position:sticky; top:28px; align-self:flex-start; background:var(--panel); border:1px solid var(--stroke); border-radius:28px; padding:38px 28px; text-align:center; box-shadow:0 18px 48px rgba(0,0,0,0.18);"
+>
+        <div
+          id="profileAvatar"
+          style="width:150px; height:150px; border-radius:999px; background:linear-gradient(135deg, var(--acc1), var(--acc2)); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; overflow:hidden; font-size:4rem; font-weight:800; color:#08111f;"
+        >
+          <span id="avatarInitial">U</span>
+        </div>
+
+        <h1 id="profileName" style="margin:0 0 10px; font-size:2rem; font-weight:800; line-height:1.15;">User Name</h1>
+        <p id="profileEmail" style="margin:0 0 34px; color:var(--muted); font-size:1rem;">user@email.com</p>
+
+        <div style="text-align:left;">
+          <h2 style="margin:0 0 14px; font-size:1rem; font-weight:800;">Account</h2>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:16px; padding:18px; border-radius:18px; border:1px solid rgba(255,255,255,0.11); background:rgba(255,255,255,0.02);">
+              <div style="width:58px; height:58px; border-radius:16px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--acc1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:1rem; font-weight:700; margin-bottom:4px;">Edit Profile</div>
+                <div style="font-size:0.9rem; color:var(--muted);">Change your details</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px; padding:18px; border-radius:18px; border:1px solid rgba(255,255,255,0.11); background:rgba(255,255,255,0.02);">
+              <div style="width:58px; height:58px; border-radius:16px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:1rem; font-weight:700; margin-bottom:4px;">Settings</div>
+                <div style="font-size:0.9rem; color:var(--muted);">App preferences</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          id="logoutBtn"
+          style="width:100%; margin-top:22px; padding:16px; border-radius:16px; border:1px solid rgba(255,71,87,0.22); background:rgba(255,71,87,0.07); color:#ff6d7a; font-size:1rem; font-weight:700; cursor:pointer;"
+        >
+          Sign Out
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div style="flex:1; min-width:740px; display:flex; flex-direction:column; gap:18px;">
+        <div
+          style="background:var(--panel); border:1px solid var(--stroke); border-radius:24px; padding:22px 24px;"
+        >
+          <h2 style="margin:0 0 6px; font-size:1.15rem; font-weight:800;">Payment Methods</h2>
+          <p style="margin:0; color:var(--muted); font-size:0.95rem; line-height:1.6;">
+            A smarter overview of your linked bank account, cards, recent money activity, and reward benefits.
+          </p>
+        </div>
+
+        <!-- Bank Accounts -->
+        <div
+          style="display:flex; gap:18px; flex-wrap:wrap; align-items:stretch; background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)); border:1px solid var(--stroke); border-radius:28px; padding:26px; box-shadow:0 18px 40px rgba(0,0,0,0.18);"
+        >
+          <div style="flex:0 0 260px; min-width:220px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div>
+              <div style="font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:#8fb5ff; margin-bottom:10px;">Primary Account</div>
+              <h3 style="margin:0 0 10px; font-size:1.15rem; font-weight:800;">Bank Accounts</h3>
+              <p style="margin:0; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+                Connected bank details used for TrustLine payments and transfers.
+              </p>
+            </div>
+            <span id="bankStatusBadge">Checking</span>
+          </div>
+
+          <div style="flex:1 1 520px; min-width:420px; display:flex; flex-direction:column; gap:16px;">
+            <div id="bankLinkedState">
+              <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:stretch;">
+                <div
+                  style="flex:1 1 330px; min-width:320px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:20px;"
+                >
+                  <div id="bankNameText" style="font-size:1.1rem; font-weight:800; margin-bottom:14px; line-height:1.35;">Bank not linked</div>
+
+                  <div style="display:flex; flex-direction:column; gap:14px;">
+                    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:18px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.07);">
+                      <span style="font-size:0.92rem; color:var(--muted); min-width:130px;">Account holder</span>
+                      <strong id="bankHolderText" style="font-size:0.98rem; text-align:right; line-height:1.45; word-break:break-word;">—</strong>
+                    </div>
+
+                    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:18px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.07);">
+                      <span style="font-size:0.92rem; color:var(--muted); min-width:130px;">Registered mobile</span>
+                      <strong id="bankPhoneText" style="font-size:0.98rem; text-align:right; line-height:1.45; word-break:break-word;">—</strong>
+                    </div>
+
+                    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:18px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.07);">
+                      <span style="font-size:0.92rem; color:var(--muted); min-width:130px;">Account type</span>
+                      <strong id="bankTypeText" style="font-size:0.98rem; text-align:right; line-height:1.45; word-break:break-word;">—</strong>
+                    </div>
+
+                    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:18px;">
+                      <span style="font-size:0.92rem; color:var(--muted); min-width:130px;">UPI status</span>
+                      <strong id="bankUpiText" style="font-size:0.98rem; text-align:right; line-height:1.45; word-break:break-word;">—</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="flex:0 0 280px; min-width:250px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:22px; display:flex; flex-direction:column; justify-content:space-between; gap:20px;"
+                >
+                  <div>
+                    <div style="font-size:0.95rem; color:var(--muted); margin-bottom:10px;">Money balance</div>
+                    <div id="bankBalanceText" style="font-size:2.2rem; line-height:1.05; font-weight:800; color:var(--acc1); word-break:break-word;">₹0.00</div>
+                  </div>
+
+                  <div
+                    style="display:inline-flex; align-items:center; gap:8px; width:fit-content; max-width:100%; padding:10px 14px; border-radius:999px; border:1px solid rgba(85,239,196,0.18); background:rgba(85,239,196,0.08); color:var(--green); font-size:0.86rem; font-weight:700;"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M16 12l-4-4-4 4"></path>
+                      <path d="M12 16V8"></path>
+                    </svg>
+                    Available now
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="bankEmptyState"
+              style="display:none; flex-direction:column; justify-content:center; min-height:180px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:22px;"
+            >
+              <h4 style="margin:0 0 8px; font-size:1.05rem; font-weight:800;">No linked bank account yet</h4>
+              <p style="margin:0; color:var(--muted); line-height:1.65;">
+                Connect your first bank account to start receiving money, making payments, and enabling card-based features.
+              </p>
+            </div>
+          </div>
+
+          <div style="flex:0 0 230px; min-width:210px; display:flex; flex-direction:column; justify-content:center; gap:14px;">
+            <a
+              href="bank-link.html"
+              id="bankManageBtn"
+              style="display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 18px; border-radius:18px; background:linear-gradient(90deg, var(--acc1), var(--acc2)); color:#07101d; text-decoration:none; font-size:0.98rem; font-weight:800;"
+            >
+              Manage Linked Banks
+            </a>
+
+            <a
+              href="bank-link.html"
+              id="bankChangeBtn"
+              style="display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 18px; border-radius:18px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); color:var(--text); text-decoration:none; font-size:0.98rem; font-weight:700;"
+            >
+              Change Account
+            </a>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div
+          style="display:flex; gap:18px; flex-wrap:wrap; align-items:stretch; background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)); border:1px solid var(--stroke); border-radius:28px; padding:26px; box-shadow:0 18px 40px rgba(0,0,0,0.18);"
+        >
+          <div style="flex:0 0 260px; min-width:220px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div>
+              <div style="font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:#8fb5ff; margin-bottom:10px;">Card Overview</div>
+              <h3 style="margin:0 0 10px; font-size:1.15rem; font-weight:800;">Cards</h3>
+              <p style="margin:0; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+                A quick look at your demo card, protection status, and spending limits.
+              </p>
+            </div>
+            <span id="cardsStatusBadge">Active</span>
+          </div>
+
+          <div style="flex:1 1 520px; min-width:420px; display:flex; flex-direction:column; gap:16px;">
+            <div
+              id="cardVisual"
+              style="padding:22px; min-height:175px; border-radius:24px; border:1px solid rgba(255,255,255,0.12); background:radial-gradient(circle at top right, rgba(124,77,255,0.24), transparent 40%), radial-gradient(circle at bottom left, rgba(0,229,255,0.16), transparent 44%), linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); display:flex; flex-direction:column; justify-content:space-between;"
+            >
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                <div id="cardTierText" style="font-size:1rem; font-weight:800;">TrustLine Virtual Debit</div>
+                <div id="cardChipText" style="padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.16); background:rgba(255,255,255,0.08); font-size:0.84rem; font-weight:700;">Secured</div>
+              </div>
+
+              <div id="cardMaskedNumber" style="font-size:2rem; font-weight:800; letter-spacing:0.14em; line-height:1.1; word-break:break-word;">•••• 0000</div>
+
+              <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+                <div>
+                  <div style="font-size:0.88rem; color:var(--muted); margin-bottom:4px;">Linked bank</div>
+                  <strong id="cardLinkedBankText" style="font-size:1rem;">No bank linked</strong>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:0.88rem; color:var(--muted); margin-bottom:4px;">Status</div>
+                  <strong id="cardStatusText" style="font-size:1rem;">Pending</strong>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <div style="flex:1 1 150px; min-width:150px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:20px; padding:18px;">
+                <div style="font-size:0.9rem; color:var(--muted); margin-bottom:8px;">Card type</div>
+                <div id="cardTypeText" style="font-size:0.98rem; font-weight:800; line-height:1.45; word-break:break-word;">Virtual debit</div>
+              </div>
+
+              <div style="flex:1 1 150px; min-width:150px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:20px; padding:18px;">
+                <div style="font-size:0.9rem; color:var(--muted); margin-bottom:8px;">Daily limit</div>
+                <div id="cardLimitText" style="font-size:0.98rem; font-weight:800; line-height:1.45; word-break:break-word;">₹0.00</div>
+              </div>
+
+              <div style="flex:1 1 150px; min-width:150px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:20px; padding:18px;">
+                <div style="font-size:0.9rem; color:var(--muted); margin-bottom:8px;">Online payments</div>
+                <div id="cardOnlineText" style="font-size:0.98rem; font-weight:800; line-height:1.45; word-break:break-word;">Disabled</div>
+              </div>
+
+              <div style="flex:1 1 150px; min-width:150px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:20px; padding:18px;">
+                <div style="font-size:0.9rem; color:var(--muted); margin-bottom:8px;">Contactless</div>
+                <div id="cardContactlessText" style="font-size:0.98rem; font-weight:800; line-height:1.45; word-break:break-word;">Disabled</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:0 0 230px; min-width:210px; display:flex; flex-direction:column; justify-content:center; gap:14px;">
+            <button
+              type="button"
+              id="cardsPrimaryBtn"
+              style="min-height:56px; padding:0 18px; border:none; border-radius:18px; background:linear-gradient(90deg, var(--acc1), var(--acc2)); color:#07101d; font-size:0.98rem; font-weight:800; cursor:pointer;"
+            >
+              Manage Cards
+            </button>
+
+            <button
+              type="button"
+              id="cardsSecondaryBtn"
+              style="min-height:56px; padding:0 18px; border-radius:18px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); color:var(--text); font-size:0.98rem; font-weight:700; cursor:pointer;"
+            >
+              Card Controls
+            </button>
+          </div>
+        </div>
+
+        <!-- Transactions -->
+        <div
+          style="display:flex; gap:18px; flex-wrap:wrap; align-items:stretch; background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)); border:1px solid var(--stroke); border-radius:28px; padding:26px; box-shadow:0 18px 40px rgba(0,0,0,0.18);"
+        >
+          <div style="flex:0 0 260px; min-width:220px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div>
+              <div style="font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:#8fb5ff; margin-bottom:10px;">Money Movement</div>
+              <h3 style="margin:0 0 10px; font-size:1.15rem; font-weight:800;">Transactions</h3>
+              <p style="margin:0; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+                A quick summary of your latest transfers, deposits, and credits.
+              </p>
+            </div>
+            <span id="txnStatusBadge">Recent</span>
+          </div>
+
+          <div style="flex:1 1 520px; min-width:420px; display:flex; flex-direction:column; gap:16px;">
+            <div
+              style="display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:18px 20px;"
+            >
+              <div>
+                <div style="font-size:0.92rem; color:var(--muted); margin-bottom:6px;">Recent transaction value</div>
+                <div id="transactionSummaryValue" style="font-size:1.2rem; font-weight:800;">₹0.00</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:0.92rem; color:var(--muted); margin-bottom:6px;">Entries shown</div>
+                <div id="transactionCountValue" style="font-size:1.2rem; font-weight:800;">0</div>
+              </div>
+            </div>
+
+            <div id="transactionsList" style="display:flex; flex-direction:column; gap:12px;">
+              <div
+                style="display:flex; flex-direction:column; justify-content:center; min-height:140px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:22px;"
+              >
+                <h4 style="margin:0 0 8px; font-size:1.05rem; font-weight:800;">No transactions yet</h4>
+                <p style="margin:0; color:var(--muted); line-height:1.65;">Once money activity starts, your recent entries will appear here.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:0 0 230px; min-width:210px; display:flex; flex-direction:column; justify-content:center; gap:14px;">
+            <a
+              href="passbook.html"
+              style="display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 18px; border-radius:18px; background:linear-gradient(90deg, var(--acc1), var(--acc2)); color:#07101d; text-decoration:none; font-size:0.98rem; font-weight:800;"
+            >
+              Open Passbook
+            </a>
+
+            <a
+              href="contact-pay.html"
+              style="display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 18px; border-radius:18px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); color:var(--text); text-decoration:none; font-size:0.98rem; font-weight:700;"
+            >
+              Pay Someone
+            </a>
+          </div>
+        </div>
+
+        <!-- Rewards -->
+        <div
+          style="display:flex; gap:18px; flex-wrap:wrap; align-items:stretch; background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)); border:1px solid var(--stroke); border-radius:28px; padding:26px; box-shadow:0 18px 40px rgba(0,0,0,0.18);"
+        >
+          <div style="flex:0 0 260px; min-width:220px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div>
+              <div style="font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:#8fb5ff; margin-bottom:10px;">Benefits & Points</div>
+              <h3 style="margin:0 0 10px; font-size:1.15rem; font-weight:800;">Rewards</h3>
+              <p style="margin:0; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+                Track earned points, current milestone progress, and your latest reward wins.
+              </p>
+            </div>
+            <span id="rewardStatusBadge">Live</span>
+          </div>
+
+          <div style="flex:1 1 520px; min-width:420px; display:flex; flex-direction:column; gap:16px;">
+            <div
+              style="display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:18px 20px;"
+            >
+              <div>
+                <div id="rewardPointsValue" style="font-size:2rem; line-height:1; font-weight:800; color:#ffd166;">0</div>
+                <div style="font-size:0.92rem; color:var(--muted); margin-top:8px;">Available reward points</div>
+              </div>
+              <div
+                id="rewardReasonText"
+                style="display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:999px; border:1px solid rgba(255,209,102,0.2); background:rgba(255,209,102,0.08); color:#ffd166; font-size:0.84rem; font-weight:700;"
+              >
+                No rewards yet
+              </div>
+            </div>
+
+            <div
+              style="width:100%; height:10px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.06); overflow:hidden;"
+            >
+              <span id="rewardProgressBar" style="display:block; height:100%; width:0%; border-radius:inherit; background:linear-gradient(90deg, #ffd166, #ffb703);"></span>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; color:var(--muted); font-size:0.9rem;">
+              <span id="rewardProgressText">0 / 100 points to unlock next milestone</span>
+              <span id="rewardHintText">Keep transacting to grow faster</span>
+            </div>
+
+            <div id="rewardsList" style="display:flex; flex-direction:column; gap:12px;">
+              <div
+                style="display:flex; flex-direction:column; justify-content:center; min-height:140px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); border-radius:22px; padding:22px;"
+              >
+                <h4 style="margin:0 0 8px; font-size:1.05rem; font-weight:800;">No reward activity yet</h4>
+                <p style="margin:0; color:var(--muted); line-height:1.65;">Link a bank or complete demo transactions to start earning points.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:0 0 230px; min-width:210px; display:flex; flex-direction:column; justify-content:center; gap:14px;">
+            <a
+              href="rewards-center.html"
+              style="display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 18px; border-radius:18px; background:linear-gradient(90deg, var(--acc1), var(--acc2)); color:#07101d; text-decoration:none; font-size:0.98rem; font-weight:800;"
+            >
+              Open Rewards Center
+            </a>
+
+            <a
+              href="notifications.html"
+              style="display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 18px; border-radius:18px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); color:var(--text); text-decoration:none; font-size:0.98rem; font-weight:700;"
+            >
+              View Notifications
+            </a>
+          </div>
+        </div>
+
+        <!-- Support -->
+        <div
+          style="background:var(--panel); border:1px solid var(--stroke); border-radius:24px; padding:24px;"
+        >
+          <h2 style="margin:0 0 6px; font-size:1.1rem; font-weight:800;">Support</h2>
+          <p style="margin:0 0 18px; color:var(--muted); font-size:0.95rem; line-height:1.6;">
+            Need help with payments, account setup, or rewards? Reach out from here.
+          </p>
+
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a
+              href="support.html"
+              style="flex:1 1 260px; min-width:240px; display:flex; align-items:center; gap:16px; padding:18px; border-radius:18px; border:1px solid rgba(255,255,255,0.11); background:rgba(255,255,255,0.02); text-decoration:none; color:inherit;"
+            >
+              <div style="width:54px; height:54px; border-radius:14px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:1rem; font-weight:700; margin-bottom:4px;">Help Center</div>
+                <div style="font-size:0.9rem; color:var(--muted);">FAQs & support</div>
+              </div>
+            </a>
+
+            <a
+              href="support.html"
+              style="flex:1 1 260px; min-width:240px; display:flex; align-items:center; gap:16px; padding:18px; border-radius:18px; border:1px solid rgba(255,255,255,0.11); background:rgba(255,255,255,0.02); text-decoration:none; color:inherit;"
+            >
+              <div style="width:54px; height:54px; border-radius:14px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:1rem; font-weight:700; margin-bottom:4px;">Contact Us</div>
+                <div style="font-size:0.9rem; color:var(--muted);">Email & chat</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="JS/wallet_sync.js"></script>
+  <script src="JS/Profile_script.js"></script>
+</body>
+</html>

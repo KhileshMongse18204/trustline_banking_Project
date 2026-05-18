@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Passbook — TrustLine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/logo.svg">
+    <link rel="stylesheet" href="CSS/modules.css">
+</head>
+
+<body>
+    <div class="page">
+        <nav class="module-nav"><a class="module-brand" href="Home.html"><img src="assets/logo.svg"
+                    alt="logo"><span>TrustLine</span></a>
+            <div class="module-actions"><a class="back-link" href="Home.html">← Back to Home</a><a class="back-link"
+                    href="Profile.html">Profile</a></div>
+        </nav>
+        <div class="container stack">
+            <section class="hero-card"><span class="tag">Passbook & history</span>
+                <h1 class="section-title">Track all money movement in one place</h1>
+                <p class="section-subtitle">View payments, QR debits, deposits, withdrawals, and transfers across every
+                    linked bank.</p>
+                <div class="grid grid-4">
+                    <div class="kpi">
+                        <div class="kpi-label">Total transactions</div>
+                        <div class="kpi-value" id="pbTxnCount">0</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-label">Money in</div>
+                        <div class="kpi-value amount-positive" id="pbMoneyIn">₹0</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-label">Money out</div>
+                        <div class="kpi-value amount-negative" id="pbMoneyOut">₹0</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-label">Linked banks</div>
+                        <div class="kpi-value" id="pbBankCount">0</div>
+                    </div>
+                </div>
+            </section>
+            <section class="panel">
+                <div class="row">
+                    <div>
+                        <h2 class="section-title">Transaction list</h2>
+                        <p class="section-subtitle">Filter by bank and search by note or party.</p>
+                    </div>
+                </div>
+                <div class="filter-bar"><select id="pbBankFilter">
+                        <option value="all">All banks</option>
+                    </select><input id="pbSearch" type="text" placeholder="Search passbook"></div>
+                <div id="passbookList" class="list"></div>
+            </section>
+        </div>
+    </div>
+    <script src="JS/app_common.js"></script>
+    <script src="JS/passbook.js"></script>
+    <script src="JS/wallet_sync.js"></script>
+<script src="JS/passbook_sync.js"></script>
+</body>
+
+</html>

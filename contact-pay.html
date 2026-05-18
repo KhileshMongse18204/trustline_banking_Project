@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Pay — TrustLine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="CSS/modules.css">
+  <style>
+    /* ── Design tokens ─────────────────────────────── */
+    :root {
+      --bg: #080c14;
+      --surface: #0e1420;
+      --card: #111827;
+      --card-2: #161e2e;
+      --border: rgba(255,255,255,0.08);
+      --border-hi: rgba(0,229,255,0.35);
+      --text: #e8edf8;
+      --muted: #6b7ea0;
+      --dim: #3a4560;
+      --acc: #00e5ff;
+      --acc2: #7c4dff;
+      --green: #00d68f;
+      --red: #ff6b81;
+      --yellow: #ffd166;
+      --font: 'Sora', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+    }
+
+    /* subtle grid bg */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 700px 500px at 10% 0%, rgba(0,229,255,0.07), transparent 70%),
+        radial-gradient(ellipse 600px 600px at 90% 20%, rgba(124,77,255,0.07), transparent 70%);
+    }
+
+    /* ── Nav ────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.6rem;
+      background: rgba(8,12,20,0.75);
+      backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.05rem; text-decoration: none; color: var(--text); }
+    .nav-brand img { width: 26px; height: 26px; }
+    .nav-links { display: flex; gap: 0.75rem; }
+    .nav-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1rem; border-radius: 10px;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.04);
+      color: var(--muted); font-size: 0.88rem; font-weight: 600; text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-link:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+    /* ── Page layout ────────────────────────────────── */
+    .page { position: relative; z-index: 1; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 1.6rem 1.2rem; }
+
+    /* ── Header strip ───────────────────────────────── */
+    .page-header { padding: 2rem 0 1.4rem; }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.8rem; border-radius: 999px;
+      background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+      color: var(--acc); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+      margin-bottom: 0.9rem;
+    }
+    .page-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .page-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ── Two-column split ───────────────────────────── */
+    .split { display: grid; grid-template-columns: 380px 1fr; gap: 1rem; align-items: start; }
+
+    /* ── Panel base ─────────────────────────────────── */
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .panel-head {
+      padding: 1.2rem 1.4rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .panel-title { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+    .panel-body { padding: 1rem 1.2rem; }
+
+    /* ── Search ─────────────────────────────────────── */
+    .search-wrap { position: relative; }
+    .search-wrap svg {
+      position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%);
+      color: var(--muted); pointer-events: none;
+    }
+    .search-input {
+      width: 100%; padding: 0.7rem 0.9rem 0.7rem 2.5rem;
+      border-radius: 10px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04); color: var(--text);
+      font-family: var(--font); font-size: 0.88rem;
+      outline: none; transition: border-color 0.15s;
+    }
+    .search-input::placeholder { color: var(--dim); }
+    .search-input:focus { border-color: rgba(0,229,255,0.3); }
+
+    /* ── Contact list ───────────────────────────────── */
+    .contact-list { display: flex; flex-direction: column; gap: 2px; padding: 0.6rem; max-height: 440px; overflow-y: auto; }
+    .contact-list::-webkit-scrollbar { width: 4px; }
+    .contact-list::-webkit-scrollbar-track { background: transparent; }
+    .contact-list::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 99px; }
+
+    .contact-row {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding: 0.8rem 0.9rem; border-radius: 12px;
+      cursor: pointer; transition: background 0.12s;
+      border: 1px solid transparent;
+    }
+    .contact-row:hover { background: rgba(255,255,255,0.04); }
+    .contact-row.active {
+      background: rgba(0,229,255,0.06);
+      border-color: rgba(0,229,255,0.25);
+    }
+
+    .avatar {
+      flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.88rem; color: #07101f;
+    }
+
+    .contact-info { flex: 1; min-width: 0; }
+    .contact-name { font-size: 0.92rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .contact-phone { font-size: 0.78rem; color: var(--muted); font-family: var(--mono); margin-top: 0.1rem; }
+
+    .contact-badge {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 0.2rem 0.5rem; border-radius: 999px; flex-shrink: 0;
+    }
+    .badge-recent { background: rgba(0,214,143,0.12); color: var(--green); border: 1px solid rgba(0,214,143,0.2); }
+    .badge-mock { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+
+    .empty-state { padding: 2rem 1rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    .empty-state svg { margin-bottom: 0.75rem; color: var(--dim); }
+
+    /* ── Right panel: Payment ───────────────────────── */
+    .pay-panel { display: flex; flex-direction: column; gap: 1rem; }
+
+    /* Selected contact card */
+    .selected-card {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem;
+      display: flex; align-items: center; gap: 1rem;
+      min-height: 80px;
+    }
+    .selected-card.empty { color: var(--muted); font-size: 0.9rem; border-style: dashed; justify-content: center; }
+    .selected-card .avatar { width: 52px; height: 52px; font-size: 1rem; }
+    .selected-name { font-size: 1.05rem; font-weight: 700; }
+    .selected-phone { font-size: 0.82rem; color: var(--muted); font-family: var(--mono); margin-top: 0.2rem; }
+    .selected-label { font-size: 0.75rem; color: var(--acc); font-weight: 600; margin-top: 0.2rem; }
+
+    /* Form fields */
+    .form-stack { display: flex; flex-direction: column; gap: 0.85rem; }
+    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field label { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.03em; text-transform: uppercase; }
+    .field input, .field select {
+      padding: 0.8rem 1rem; border-radius: 12px;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.04);
+      color: var(--text); font-family: var(--font); font-size: 0.95rem;
+      outline: none; transition: border-color 0.15s;
+      width: 100%;
+    }
+    .field input:focus, .field select:focus { border-color: rgba(0,229,255,0.35); }
+    .field input::placeholder { color: var(--dim); }
+    .field input[readonly] { color: var(--muted); cursor: default; }
+    .field select option { background: var(--card); }
+
+    /* Amount field special */
+    .amount-wrap { position: relative; }
+    .amount-currency {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      font-size: 1rem; font-weight: 700; color: var(--muted); pointer-events: none;
+    }
+    .amount-input { padding-left: 2.2rem !important; font-size: 1.1rem !important; font-weight: 700 !important; font-family: var(--mono) !important; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+
+    /* Quick amounts */
+    .quick-amounts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem; }
+    .quick-btn {
+      padding: 0.35rem 0.75rem; border-radius: 8px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04); color: var(--muted);
+      font-size: 0.8rem; font-weight: 600; font-family: var(--mono);
+      cursor: pointer; transition: all 0.12s;
+    }
+    .quick-btn:hover { border-color: rgba(0,229,255,0.3); color: var(--acc); background: rgba(0,229,255,0.06); }
+
+    /* Send button */
+    .send-btn {
+      width: 100%; padding: 1rem; border-radius: 14px; border: 0;
+      background: linear-gradient(90deg, var(--acc), var(--acc2));
+      color: #07101f; font-family: var(--font); font-size: 1rem; font-weight: 800;
+      cursor: pointer; transition: opacity 0.15s, transform 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    }
+    .send-btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+    .send-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+    .send-btn.loading { pointer-events: none; }
+
+    /* Disclaimer */
+    .disclaimer { font-size: 0.78rem; color: var(--muted); line-height: 1.6; text-align: center; }
+
+    /* ── Confirm modal ──────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(4,8,16,0.75); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 2rem; width: 100%; max-width: 400px;
+      transform: translateY(16px); transition: transform 0.2s;
+    }
+    .modal-overlay.show .modal { transform: translateY(0); }
+    .modal-icon {
+      width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1rem;
+      background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--acc);
+    }
+    .modal-title { text-align: center; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .modal-sub { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .modal-amount { text-align: center; font-size: 2.4rem; font-weight: 800; font-family: var(--mono); color: var(--acc); margin-bottom: 0.3rem; }
+    .modal-to { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .modal-detail { display: flex; flex-direction: column; gap: 0.6rem; background: var(--card-2); border-radius: 14px; padding: 1rem; margin-bottom: 1.5rem; }
+    .modal-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; }
+    .modal-row span:first-child { color: var(--muted); }
+    .modal-row span:last-child { font-weight: 600; font-family: var(--mono); }
+    .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .modal-cancel { padding: 0.85rem; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: var(--text); font-family: var(--font); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.12s; }
+    .modal-cancel:hover { background: rgba(255,255,255,0.04); }
+    .modal-confirm { padding: 0.85rem; border-radius: 12px; border: 0; background: linear-gradient(90deg, var(--acc), var(--acc2)); color: #07101f; font-family: var(--font); font-size: 0.95rem; font-weight: 800; cursor: pointer; transition: opacity 0.15s; }
+    .modal-confirm:hover { opacity: 0.9; }
+
+    /* ── Success state ──────────────────────────────── */
+    .success-overlay {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(4,8,16,0.85); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .success-overlay.show { opacity: 1; pointer-events: all; }
+    .success-card {
+      background: var(--card); border: 1px solid rgba(0,214,143,0.25);
+      border-radius: 24px; padding: 2.5rem 2rem; width: 100%; max-width: 360px;
+      text-align: center;
+      transform: scale(0.94); transition: transform 0.25s;
+    }
+    .success-overlay.show .success-card { transform: scale(1); }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1.2rem;
+      background: rgba(0,214,143,0.1); border: 1px solid rgba(0,214,143,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 2rem;
+    }
+    .success-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .success-amount { font-size: 2.5rem; font-weight: 800; font-family: var(--mono); color: var(--green); margin-bottom: 0.4rem; }
+    .success-to { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; }
+    .success-close { width: 100%; padding: 0.9rem; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: var(--text); font-family: var(--font); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.12s; }
+    .success-close:hover { background: rgba(255,255,255,0.04); }
+
+    /* ── Toast ──────────────────────────────────────── */
+    .toast-stack { position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 900; display: flex; flex-direction: column; gap: 0.6rem; }
+    .toast {
+      min-width: 240px; max-width: 300px; padding: 0.85rem 1rem;
+      border-radius: 14px; border: 1px solid var(--border);
+      background: rgba(14,20,32,0.95); backdrop-filter: blur(10px);
+      animation: toastIn 0.2s ease;
+    }
+    .toast.toast-error { border-color: rgba(255,107,129,0.3); }
+    @keyframes toastIn { from { transform: translateX(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+    .toast-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .toast-msg { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 860px) {
+      .split { grid-template-columns: 1fr; }
+      .contact-list { max-height: 300px; }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 1.6rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Nav -->
+    <nav class="nav">
+      <a class="nav-brand" href="Home.html">
+        <img src="assets/logo.svg" alt="TrustLine">
+        <span>TrustLine</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="Home.html">← Home</a>
+        <a class="nav-link" href="Profile.html">Profile</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Header -->
+      <div class="page-header">
+        <div class="page-badge">Contact Pay</div>
+        <h1 class="page-title">Send money by mobile number</h1>
+        <p class="page-sub">Pick a saved contact, enter the amount, and confirm. Debit, rewards, passbook, and notification flows run live inside the project.</p>
+      </div>
+
+      <!-- Split layout -->
+      <div class="split">
+
+        <!-- Left: Contact picker -->
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Contacts</span>
+            <div class="search-wrap">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input class="search-input" id="contactSearch" type="text" placeholder="Search name or number…" autocomplete="off">
+            </div>
+          </div>
+          <div class="contact-list" id="contactList">
+            <div class="empty-state">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <div>Loading contacts…</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Payment form -->
+        <div class="pay-panel">
+
+          <!-- Selected contact -->
+          <div class="selected-card empty" id="selectedContactCard">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M5.2 20a7 7 0 0 1 13.6 0"/></svg>
+            Select a contact from the left to continue
+          </div>
+
+          <!-- Form panel -->
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-title">Payment details</span>
+            </div>
+            <div class="panel-body">
+              <div class="form-stack">
+
+                <div class="field">
+                  <label>From bank</label>
+                  <select id="contactBankId"></select>
+                </div>
+
+                <div class="field">
+                  <label>Amount</label>
+                  <div class="amount-wrap">
+                    <span class="amount-currency">₹</span>
+                    <input class="amount-input" id="contactAmount" type="number" min="1" step="0.01" placeholder="0.00">
+                  </div>
+                  <div class="quick-amounts" id="quickAmounts">
+                    <button class="quick-btn" data-val="100">100</button>
+                    <button class="quick-btn" data-val="250">250</button>
+                    <button class="quick-btn" data-val="500">500</button>
+                    <button class="quick-btn" data-val="1000">1,000</button>
+                    <button class="quick-btn" data-val="2000">2,000</button>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="field">
+                    <label>Note (optional)</label>
+                    <input id="contactNote" type="text" placeholder="Rent, dinner, etc.">
+                  </div>
+                  <div class="field">
+                    <label>Sending to</label>
+                    <input id="contactPhone" type="text" readonly placeholder="—">
+                  </div>
+                </div>
+
+                <button class="send-btn" id="contactPayBtn" disabled>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Send money
+                </button>
+
+                <p class="disclaimer">Demo only — receiver is mocked. All internal flows (debit, rewards, passbook) are real.</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /pay-panel -->
+      </div><!-- /split -->
+    </div><!-- /container -->
+  </div><!-- /page -->
+
+  <!-- Confirm modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal">
+      <div class="modal-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </div>
+      <div class="modal-title">Confirm payment</div>
+      <div class="modal-sub">Review before sending. This action cannot be undone.</div>
+      <div class="modal-amount" id="modalAmount">₹0</div>
+      <div class="modal-to" id="modalTo">to —</div>
+      <div class="modal-detail">
+        <div class="modal-row"><span>Recipient phone</span><span id="modalPhone">—</span></div>
+        <div class="modal-row"><span>From bank</span><span id="modalBank">—</span></div>
+        <div class="modal-row"><span>Note</span><span id="modalNote">—</span></div>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-cancel" id="modalCancel">Cancel</button>
+        <button class="modal-confirm" id="modalConfirm">Confirm & Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success overlay -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Payment sent!</div>
+      <div class="success-amount" id="successAmount">₹0</div>
+      <div class="success-to" id="successTo">to —</div>
+      <button class="success-close" id="successClose">Done</button>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="JS/app_common.js"></script>
+  <script src="JS/contact_pay.js"></script>
+</body>
+</html>

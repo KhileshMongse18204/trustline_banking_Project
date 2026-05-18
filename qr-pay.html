@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Pay — TrustLine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/logo.svg">
+    <link rel="stylesheet" href="CSS/modules.css">
+</head>
+
+<body>
+    <div class="page">
+        <nav class="module-nav"><a class="module-brand" href="Home.html"><img src="assets/logo.svg"
+                    alt="logo"><span>TrustLine</span></a>
+            <div class="module-actions"><a class="back-link" href="Home.html">← Back to Home</a><a class="back-link"
+                    href="Profile.html">Profile</a></div>
+        </nav>
+        <div class="container stack">
+            <section class="hero-card"><span class="tag">Scan & pay demo</span>
+                <h1 class="section-title">Simulate a QR payment flow</h1>
+                <p class="section-subtitle">Choose a sample QR merchant or paste a UPI-style payload. This page keeps
+                    the experience realistic without real-money processing.</p>
+            </section>
+            <section class="grid grid-2">
+                <div class="panel stack">
+                    <div>
+                        <h2 class="section-title">Scanner</h2>
+                        <p class="section-subtitle">Pick a sample merchant or use your own payload.</p>
+                    </div>
+                    <div class="scanner-frame">
+                        <div class="stack" style="align-items:center;width:100%">
+                            <div class="qr-box" style="display:flex;align-items:center;justify-content:center;background:none;position:relative;--hide-scan:1;">
+                                <img src="assets/adobe-express-qr-code.png" alt="QR Code" style="width:100%;max-width:254px;border-radius:10px;position:relative;z-index:2;">
+                            </div>
+                            <div class="helper">Scan this QR code with your phone or select a sample merchant below.</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-3" id="qrOptions"></div>
+                    <div class="field"><label>Or paste QR / UPI payload</label><textarea id="qrPayload"
+                            placeholder="upi://pay?pa=merchant@bank&pn=Tea Point&am=120"></textarea></div>
+                </div>
+                <div class="panel stack">
+                    <div>
+                        <h2 class="section-title">Complete payment</h2>
+                        <p class="section-subtitle">Select a linked bank and confirm the amount.</p>
+                    </div>
+                    <div class="form-grid">
+                        <div class="field"><label>From bank</label><select id="qrBankId"></select></div>
+                        <div class="field"><label>Merchant</label><input id="merchantName" type="text"
+                                placeholder="Auto-filled after scan"></div>
+                        <div class="field"><label>Amount</label><input id="qrAmount" type="number" min="1" step="0.01"
+                                placeholder="Enter amount"></div>
+                        <div class="field"><label>Notes</label><input id="qrNote" type="text" placeholder="Optional">
+                        </div>
+                    </div>
+                    <div class="row"><span class="helper">Every successful payment adds a passbook entry, rewards
+                            points, and a notification.</span><button id="qrPayBtn" class="btn btn-success"
+                            type="button">Pay now</button></div>
+                    <hr class="sep">
+                    <div id="qrPreview" class="empty">Scan a sample QR to preview merchant details here.</div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="JS/app_common.js"></script>
+    <script src="JS/qr_pay.js"></script>
+    <script src="JS/wallet_sync.js"></script>
+<script src="JS/qr_pay_sync.js"></script>
+</body>
+
+</html>

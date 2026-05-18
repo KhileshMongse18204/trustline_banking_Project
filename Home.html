@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrustLine — Pay. Split. Repeat.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="CSS/Home_style.css">
+  <style>
+    /* Terminal section */
+    .terminal-section {
+      padding: 28px 24px 10px;
+    }
+
+    .terminal-section__wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #0f172a 0%, #111827 48%, #1d4ed8 100%);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.18);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .terminal-section__wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(96, 165, 250, 0.22), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.18), transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .terminal-section__header {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      padding: 34px 34px 26px;
+      align-items: center;
+    }
+
+    .terminal-section__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #bfdbfe;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .terminal-section__title {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .terminal-section__title span {
+      color: #93c5fd;
+    }
+
+    .terminal-section__sub {
+      margin: 16px 0 0;
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 620px;
+    }
+
+    .terminal-preview {
+      position: relative;
+      z-index: 1;
+      background: rgba(2, 6, 23, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .terminal-preview__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .terminal-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .terminal-dots span:nth-child(1) { background: #fb7185; }
+    .terminal-dots span:nth-child(2) { background: #fbbf24; }
+    .terminal-dots span:nth-child(3) { background: #34d399; }
+
+    .terminal-preview__label {
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .terminal-preview__body {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #dbeafe;
+      white-space: pre-line;
+    }
+
+    .terminal-section__cards {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding: 0 34px 34px;
+    }
+
+    .terminal-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(191, 219, 254, 0.8);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .terminal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 38px rgba(15, 23, 42, 0.18);
+    }
+
+    .terminal-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      color: #1d4ed8;
+    }
+
+    .terminal-card__title {
+      margin: 0 0 10px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .terminal-card__text {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #475569;
+    }
+
+    .terminal-section__cta {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: #ffffff;
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .terminal-section__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.22);
+    }
+
+    .action-item.action-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 980px) {
+      .terminal-section__header {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-section__cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .terminal-section {
+        padding: 22px 16px 8px;
+      }
+
+      .terminal-section__header {
+        padding: 24px 20px 20px;
+      }
+
+      .terminal-section__cards {
+        padding: 0 20px 24px;
+      }
+
+      .terminal-section__title {
+        font-size: 28px;
+      }
+
+      .terminal-section__sub {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader-overlay" id="loader">
+    <div class="loader">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <path d="M10,20 C10,17.24 11.12,14.74 12.93,12.93 L12.93,12.93 C14.74,11.12 17.24,10 20,10 L80,10 C82.76,10 85.26,11.12 87.07,12.93 L87.07,12.93 C88.88,14.74 90,17.24 90,20 L90,80 C90,82.76 88.88,85.26 87.07,87.07 L87.07,87.07 C85.26,88.88 82.76,90 80,90 L20,90 C17.24,90 14.74,88.88 12.93,87.07 L12.93,87.07 C11.12,85.26 10,82.76 10,80Z M68,50 C68,45.02 65.98,40.52 62.72,37.27 L62.72,37.27 C59.47,34.01 54.97,32 50,32 L50,32 C45.02,32 40.52,34.01 37.27,37.27 L37.27,37.27 C34.01,40.52 32,45.02 32,50 L32,50 C32,54.97 34.01,59.47 37.27,62.72 L37.27,62.72 C40.52,65.98 45.02,68 50,68 L50,68 C54.97,68 59.47,65.98 62.72,62.72 L62.72,62.72 C65.98,59.47 68,54.97 68,50Z"></path>
+        <path d="M10,20 C10,17.24 11.12,14.74 12.93,12.93 L12.93,12.93 C14.74,11.12 17.24,10 20,10 L80,10 C82.76,10 85.26,11.12 87.07,12.93 L87.07,12.93 C88.88,14.74 90,17.24 90,20 L90,80 C90,82.76 88.88,85.26 87.07,87.07 L87.07,87.07 C85.26,88.88 82.76,90 80,90 L20,90 C17.24,90 14.74,88.88 12.93,87.07 L12.93,87.07 C11.12,85.26 10,82.76 10,80Z"></path>
+        <path d="M10,37.57 C10,34.92 11.05,32.37 12.92,30.5 L30.5,12.92 C32.37,11.05 34.92,10 37.57,10 L62.42,10 C65.07,10 67.62,11.05 69.49,12.92 L87.07,30.5 C88.94,32.37 90,34.92 90,37.57 L90,62.42 C90,65.07 88.94,67.62 87.07,69.49 L69.49,87.07 C67.62,88.94 65.07,90 62.42,90 L37.57,90 C34.92,90 32.37,88.94 30.5,87.07 L12.92,69.49 C11.05,67.62 10,65.07 10,62.42Z"></path>
+        <path d="M10,50 C10,38.95 14.48,28.95 21.72,21.72 L21.72,21.72 C28.95,14.48 38.95,10 50,10 L50,10 C61.05,10 71.05,14.48 78.28,21.72 L78.28,21.72 C85.52,28.95 90,38.95 90,50 L90,50 C90,61.05 85.52,71.05 78.28,78.28 L78.28,78.28 C71.05,85.52 61.05,90 50,90 L50,90 C38.95,90 28.95,85.52 21.72,78.28 L21.72,78.28 C14.48,71.05 10,61.05 10,50Z"></path>
+      </svg>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="nav__brand">
+      <img src="assets/logo.svg" alt="TrustLine logo" class="brand__logo"/>
+      <span class="brand__name">TrustLine</span>
+    </div>
+    <div class="nav__right">
+      <div class="search-bar">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <div class="search-input-wrapper">
+          <input type="text" class="search-input" id="searchInput"/>
+          <span class="search-placeholder" id="searchPlaceholder"></span>
+          <span class="typing-cursor">|</span>
+        </div>
+      </div>
+
+      <a href="terminal.html" class="terminal-btn" id="terminalBtn" aria-label="Open Terminal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        Terminal
+      </a>
+
+      <!-- User Profile Section - shown when logged in -->
+      <div class="user-profile" id="userProfile" style="display: none;">
+        <img src="" alt="Profile" class="user-avatar" id="userAvatar"/>
+        <span class="user-name" id="userName"></span>
+      </div>
+      <button class="user-icon" id="userIcon" aria-label="User profile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="carousel-wrap">
+      <div class="slides" id="slidesTrack">
+
+        <!-- SLIDE 1: Welcome — night cityscape -->
+        <div class="slide">
+          <div class="slide-bg">
+            <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="900" height="420" fill="#0d1f5c"/>
+              <circle cx="520" cy="30" r="1.5" fill="#fff" opacity="0.6"/>
+              <circle cx="600" cy="55" r="1" fill="#fff" opacity="0.5"/>
+              <circle cx="680" cy="20" r="1.5" fill="#fff" opacity="0.7"/>
+              <circle cx="750" cy="45" r="1" fill="#fff" opacity="0.4"/>
+              <circle cx="810" cy="25" r="2" fill="#fff" opacity="0.5"/>
+              <circle cx="860" cy="60" r="1" fill="#fff" opacity="0.6"/>
+              <circle cx="540" cy="70" r="1" fill="#fff" opacity="0.3"/>
+              <circle cx="720" cy="80" r="1.5" fill="#fff" opacity="0.4"/>
+              <circle cx="820" cy="55" r="22" fill="#f0d060" opacity="0.85"/>
+              <circle cx="832" cy="48" r="18" fill="#0d1f5c"/>
+              <rect x="480" y="160" width="50" height="260" fill="#162660"/>
+              <rect x="540" y="130" width="40" height="290" fill="#1a2e70"/>
+              <rect x="590" y="180" width="60" height="240" fill="#162660"/>
+              <rect x="660" y="110" width="45" height="310" fill="#1a2e70"/>
+              <rect x="715" y="150" width="55" height="270" fill="#162660"/>
+              <rect x="780" y="140" width="50" height="280" fill="#1a2e70"/>
+              <rect x="840" y="170" width="60" height="250" fill="#162660"/>
+              <rect x="490" y="180" width="8" height="8" fill="#f0c040" opacity="0.7"/>
+              <rect x="505" y="180" width="8" height="8" fill="#f0c040" opacity="0.5"/>
+              <rect x="490" y="200" width="8" height="8" fill="#f0c040" opacity="0.6"/>
+              <rect x="548" y="148" width="8" height="8" fill="#a0cfff" opacity="0.6"/>
+              <rect x="560" y="148" width="8" height="8" fill="#a0cfff" opacity="0.4"/>
+              <rect x="548" y="165" width="8" height="8" fill="#f0c040" opacity="0.5"/>
+              <rect x="670" y="128" width="8" height="8" fill="#a0cfff" opacity="0.7"/>
+              <rect x="682" y="128" width="8" height="8" fill="#f0c040" opacity="0.6"/>
+              <rect x="670" y="148" width="8" height="8" fill="#f0c040" opacity="0.4"/>
+              <rect x="790" y="158" width="8" height="8" fill="#a0cfff" opacity="0.6"/>
+              <rect x="805" y="158" width="8" height="8" fill="#f0c040" opacity="0.5"/>
+              <rect x="480" y="220" width="55" height="200" fill="#1e3a8a"/>
+              <rect x="545" y="200" width="45" height="220" fill="#2348a0"/>
+              <rect x="600" y="240" width="65" height="180" fill="#1e3a8a"/>
+              <rect x="675" y="185" width="50" height="235" fill="#2348a0"/>
+              <rect x="735" y="210" width="60" height="210" fill="#1e3a8a"/>
+              <rect x="805" y="195" width="55" height="225" fill="#2348a0"/>
+              <rect x="868" y="225" width="32" height="195" fill="#1e3a8a"/>
+              <rect x="490" y="235" width="10" height="10" fill="#7dd3fc" opacity="0.7"/>
+              <rect x="506" y="235" width="10" height="10" fill="#fde68a" opacity="0.7"/>
+              <rect x="490" y="255" width="10" height="10" fill="#fde68a" opacity="0.5"/>
+              <rect x="506" y="255" width="10" height="10" fill="#7dd3fc" opacity="0.5"/>
+              <rect x="555" y="215" width="10" height="10" fill="#fde68a" opacity="0.8"/>
+              <rect x="570" y="215" width="10" height="10" fill="#7dd3fc" opacity="0.6"/>
+              <rect x="555" y="235" width="10" height="10" fill="#7dd3fc" opacity="0.5"/>
+              <rect x="685" y="200" width="10" height="10" fill="#fde68a" opacity="0.8"/>
+              <rect x="700" y="200" width="10" height="10" fill="#7dd3fc" opacity="0.7"/>
+              <rect x="685" y="220" width="10" height="10" fill="#7dd3fc" opacity="0.5"/>
+              <rect x="700" y="220" width="10" height="10" fill="#fde68a" opacity="0.6"/>
+              <rect x="745" y="225" width="10" height="10" fill="#fde68a" opacity="0.7"/>
+              <rect x="762" y="225" width="10" height="10" fill="#7dd3fc" opacity="0.6"/>
+              <rect x="815" y="210" width="10" height="10" fill="#fde68a" opacity="0.7"/>
+              <rect x="830" y="210" width="10" height="10" fill="#7dd3fc" opacity="0.5"/>
+              <rect x="0" y="360" width="900" height="60" fill="#0a1540"/>
+              <rect x="0" y="355" width="900" height="8" fill="#1e3a8a" opacity="0.6"/>
+              <rect x="200" y="378" width="40" height="4" rx="2" fill="#f0c040" opacity="0.4"/>
+              <rect x="280" y="378" width="40" height="4" rx="2" fill="#f0c040" opacity="0.4"/>
+              <rect x="360" y="378" width="40" height="4" rx="2" fill="#f0c040" opacity="0.4"/>
+              <rect x="440" y="378" width="40" height="4" rx="2" fill="#f0c040" opacity="0.4"/>
+              <circle cx="430" cy="110" r="28" fill="#f59e0b"/>
+              <circle cx="430" cy="110" r="23" fill="#fbbf24"/>
+              <text x="430" y="117" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#92400e">₹</text>
+              <circle cx="390" cy="200" r="18" fill="#10b981"/>
+              <circle cx="390" cy="200" r="14" fill="#34d399"/>
+              <text x="390" y="206" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#065f46">₹</text>
+              <circle cx="460" cy="265" r="13" fill="#6366f1"/>
+              <circle cx="460" cy="265" r="10" fill="#818cf8"/>
+              <text x="460" y="270" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#312e81">₹</text>
+              <ellipse cx="430" cy="145" rx="20" ry="5" fill="#f59e0b" opacity="0.2"/>
+              <path d="M415 300 L445 312 L445 336 Q445 355 415 368 Q385 355 385 336 L385 312 Z" fill="#1e40af" opacity="0.8"/>
+              <path d="M408 332 L413 338 L424 324" stroke="#60a5fa" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="470" cy="80" r="3" fill="#fde68a" opacity="0.8"/>
+              <circle cx="480" cy="150" r="2" fill="#a5f3fc" opacity="0.6"/>
+              <circle cx="405" cy="170" r="2" fill="#fde68a" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="slide-content" style="color:#fff;">
+            <div class="slide-tag" style="color:#93c5fd;">Welcome</div>
+            <div class="slide-title">Glad you are<br>here! 🎉</div>
+            <div class="slide-sub">Thanks for trusting us with your finances. Let's make every rupee work harder for you.</div>
+            <button class="slide-btn" style="background:#fff; color:#1e3a8a;">Get Started</button>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+          <div class="slide-bg">
+            <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="900" height="420" fill="#fff7ed"/>
+              <circle cx="750" cy="80" r="55" fill="#fed7aa" opacity="0.6"/>
+              <circle cx="750" cy="80" r="38" fill="#fdba74" opacity="0.7"/>
+              <ellipse cx="750" cy="420" rx="400" ry="180" fill="#fde68a" opacity="0.35"/>
+              <ellipse cx="550" cy="420" rx="320" ry="150" fill="#fcd34d" opacity="0.25"/>
+              <rect x="0" y="320" width="900" height="100" fill="#fef3c7"/>
+              <rect x="0" y="315" width="900" height="10" fill="#fde68a" opacity="0.6"/>
+              <rect x="480" y="190" width="40" height="130" fill="#fed7aa" rx="4"/>
+              <rect x="530" y="170" width="35" height="150" fill="#fbbf24" opacity="0.5" rx="4"/>
+              <rect x="575" y="200" width="50" height="120" fill="#fde68a" rx="4"/>
+              <rect x="635" y="160" width="38" height="160" fill="#fdba74" opacity="0.6" rx="4"/>
+              <rect x="683" y="185" width="45" height="135" fill="#fed7aa" rx="4"/>
+              <rect x="738" y="175" width="42" height="145" fill="#fbbf24" opacity="0.45" rx="4"/>
+              <rect x="790" y="205" width="55" height="115" fill="#fde68a" rx="4"/>
+              <rect x="855" y="195" width="45" height="125" fill="#fdba74" opacity="0.55" rx="4"/>
+              <rect x="560" y="70" width="130" height="230" rx="20" fill="#fff" opacity="0.92"/>
+              <rect x="572" y="90" width="106" height="190" rx="10" fill="#fff7ed"/>
+              <circle cx="625" cy="120" r="22" fill="#fed7aa"/>
+              <circle cx="625" cy="112" r="10" fill="#fb923c"/>
+              <ellipse cx="625" cy="138" rx="16" ry="10" fill="#fb923c"/>
+              <rect x="585" y="148" width="80" height="10" rx="5" fill="#fcd34d" opacity="0.8"/>
+              <rect x="600" y="164" width="50" height="7" rx="3" fill="#fde68a" opacity="0.7"/>
+              <rect x="585" y="182" width="80" height="28" rx="14" fill="#f97316"/>
+              <text x="625" y="200" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">₹ 1,200</text>
+              <rect x="595" y="220" width="60" height="22" rx="11" fill="#ea580c"/>
+              <text x="625" y="235" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fff">Send →</text>
+              <circle cx="625" cy="262" r="12" fill="#dcfce7"/>
+              <path d="M619 262 L623 267 L632 255" stroke="#16a34a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M490 240 Q520 240 540 220" stroke="#f97316" stroke-width="2.5" fill="none" stroke-dasharray="6,4"/>
+              <circle cx="460" cy="220" r="24" fill="#f59e0b"/>
+              <circle cx="460" cy="220" r="19" fill="#fbbf24"/>
+              <text x="460" y="227" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#92400e">₹</text>
+              <circle cx="500" cy="100" r="6" fill="#fed7aa" opacity="0.8"/>
+              <circle cx="850" cy="150" r="10" fill="#fde68a" opacity="0.6"/>
+              <circle cx="820" cy="290" r="8" fill="#fdba74" opacity="0.5"/>
+              <circle cx="490" cy="310" r="5" fill="#fcd34d" opacity="0.7"/>
+              <path d="M480 350 Q530 340 580 355 Q630 368 680 355 Q730 342 780 355" stroke="#fcd34d" stroke-width="2" fill="none" opacity="0.5"/>
+              <path d="M480 365 Q530 355 580 368 Q630 380 680 368 Q730 355 780 368" stroke="#fde68a" stroke-width="1.5" fill="none" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="slide-content" style="color:#7c2d12;">
+            <div class="slide-tag" style="color:#ea580c;">Payments</div>
+            <div class="slide-title">Pay by name<br>or number</div>
+            <div class="slide-sub">Send money instantly using just the recipient's name, mobile number, or account details.</div>
+            <button class="slide-btn" style="background:#ea580c; color:#fff;">Send Now</button>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+          <div class="slide-bg">
+            <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="900" height="420" fill="#022c22"/>
+              <g opacity="0.12" stroke="#34d399" stroke-width="0.8" fill="none">
+                <polygon points="540,40 565,54 565,83 540,97 515,83 515,54"/>
+                <polygon points="590,40 615,54 615,83 590,97 565,83 565,54"/>
+                <polygon points="640,40 665,54 665,83 640,97 615,83 615,54"/>
+                <polygon points="690,40 715,54 715,83 690,97 665,83 665,54"/>
+                <polygon points="740,40 765,54 765,83 740,97 715,83 715,54"/>
+                <polygon points="790,40 815,54 815,83 790,97 765,83 765,54"/>
+                <polygon points="840,40 865,54 865,83 840,97 815,83 815,54"/>
+              </g>
+              <circle cx="625" cy="140" r="8" fill="#10b981" opacity="0.9"/>
+              <circle cx="625" cy="140" r="14" fill="#10b981" opacity="0.2"/>
+              <circle cx="700" cy="97" r="6" fill="#34d399" opacity="0.8"/>
+              <circle cx="750" cy="183" r="7" fill="#10b981" opacity="0.85"/>
+              <line x1="625" y1="140" x2="700" y2="97" stroke="#34d399" stroke-width="1.5" opacity="0.5"/>
+              <line x1="625" y1="140" x2="750" y2="183" stroke="#34d399" stroke-width="1.5" opacity="0.5"/>
+              <circle cx="660" cy="200" r="60" fill="#064e3b" opacity="0.8"/>
+              <circle cx="660" cy="200" r="52" fill="#065f46" opacity="0.7"/>
+              <circle cx="660" cy="200" r="44" fill="#059669"/>
+              <text x="660" y="196" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#fff">UPI</text>
+              <text x="660" y="212" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#a7f3d0">INSTANT PAY</text>
+              <rect x="580" y="270" width="80" height="80" rx="10" fill="#fff" opacity="0.95"/>
+              <circle cx="520" cy="100" r="20" fill="#059669"/>
+              <circle cx="520" cy="100" r="16" fill="#10b981"/>
+              <text x="520" y="106" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">₹</text>
+            </svg>
+          </div>
+          <div class="slide-content" style="color:#d1fae5;">
+            <div class="slide-tag" style="color:#34d399;">UPI</div>
+            <div class="slide-title">Pay anyone<br>on UPI</div>
+            <div class="slide-sub" style="color:#a7f3d0;">Scan any QR code or enter a UPI ID to pay instantly — 24/7, zero fees.</div>
+            <button class="slide-btn" style="background:#10b981; color:#fff;">Scan & Pay</button>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide">
+          <div class="slide-bg">
+            <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="900" height="420" fill="#1e1040"/>
+              <path d="M480 60 Q600 20 720 55 Q840 90 900 50 L900 120 Q840 155 720 115 Q600 80 480 120Z" fill="#7c3aed" opacity="0.18"/>
+              <path d="M480 80 Q600 45 720 75 Q840 108 900 72 L900 138 Q840 168 720 132 Q600 98 480 135Z" fill="#a855f7" opacity="0.13"/>
+              <polygon points="480,300 570,140 660,300" fill="#2e1065" opacity="0.8"/>
+              <polygon points="560,300 660,120 760,300" fill="#3b0764" opacity="0.85"/>
+              <polygon points="640,300 730,155 820,300" fill="#2e1065" opacity="0.8"/>
+              <path d="M660 110 L710 132 L710 182 Q710 222 660 248 Q610 222 610 182 L610 132 Z" fill="#4c1d95" opacity="0.9"/>
+              <path d="M660 122 L702 142 L702 182 Q702 218 660 238 Q618 218 618 182 L618 142 Z" fill="#5b21b6"/>
+              <rect x="645" y="183" width="30" height="24" rx="6" fill="#c4b5fd"/>
+              <path d="M651 183 Q651 170 660 170 Q669 170 669 183" stroke="#c4b5fd" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slide-content" style="color:#ede9fe;">
+            <div class="slide-tag" style="color:#c4b5fd;">Security</div>
+            <div class="slide-title">Your money,<br>always safe</div>
+            <div class="slide-sub" style="color:#ddd6fe;">Bank-grade encryption, biometric login, and 24/7 fraud monitoring protect every transaction.</div>
+            <button class="slide-btn" style="background:#7c3aed; color:#fff;">Learn More</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hit left" id="prevBtn"></div>
+      <div class="hit right" id="nextBtn"></div>
+    </div>
+
+    <div class="action-grid">
+      <div class="action-item">
+        <div class="action-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="3" height="3"/><rect x="19" y="19" width="2" height="2"/><rect x="14" y="19" width="2" height="2"/><rect x="19" y="14" width="2" height="2"/></svg>
+        </div>
+        <span class="action-label">Scan any QR code</span>
+      </div>
+
+      <a href="phone-verification/" class="action-item action-link">
+        <div class="action-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M7 11h10M7 15h5"/><path d="M16 6l-2-3M8 6l2-3"/></svg>
+        </div>
+        <span class="action-label">Pay with Number</span>
+      </a>
+
+      <div class="action-item">
+        <div class="action-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21V10M21 21V10"/><path d="M12 3L2 10h20L12 3z"/><rect x="6" y="14" width="3" height="7"/><rect x="10.5" y="14" width="3" height="7"/><rect x="15" y="14" width="3" height="7"/></svg>
+        </div>
+        <span class="action-label">Bank transfer</span>
+      </div>
+
+      <a href="terminal.html" class="action-item action-link">
+        <div class="action-icon">
+          <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="18" rx="2"/><path d="M10 18h4"/><line x1="12" y1="7" x2="12" y2="11"/><polyline points="10,9 12,7 14,9"/><line x1="10" y1="13" x2="14" y2="13"/></svg>
+        </div>
+        <span class="action-label">Terminal</span>
+      </a>
+    </div>
+
+    <!-- Terminal Section -->
+    <section class="terminal-section" id="terminal-home">
+      <div class="terminal-section__wrap">
+        <div class="terminal-section__header">
+          <div>
+            <div class="terminal-section__eyebrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+              Terminal Hub
+            </div>
+
+            <h2 class="terminal-section__title">
+              Manage faster with <span>TrustLine Terminal</span>
+            </h2>
+
+            <p class="terminal-section__sub">
+              Access a smart terminal experience directly from the homepage. Check transaction tools,
+              monitor payment actions, review transfer flow, and move quickly into advanced controls
+              from one place.
+            </p>
+
+            <a href="terminal.html" class="terminal-section__cta">
+              Open Terminal
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="terminal-preview">
+            <div class="terminal-preview__top">
+              <div class="terminal-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="terminal-preview__label">terminal.html</div>
+            </div>
+            <pre class="terminal-preview__body">$ trustline terminal
+> Open payment controls
+> View transfer logs
+> Check quick actions
+> Launch secure transaction tools
+
+Status: Ready
+Access: Instant
+Mode: Protected</pre>
+          </div>
+        </div>
+
+        <div class="terminal-section__cards">
+          <div class="terminal-card">
+            <div class="terminal-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+            </div>
+            <h3 class="terminal-card__title">Quick Access Terminal</h3>
+            <p class="terminal-card__text">
+              Open the TrustLine terminal in one click and move directly into payment actions,
+              operational shortcuts, and transaction tools without extra navigation.
+            </p>
+          </div>
+
+          <div class="terminal-card">
+            <div class="terminal-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="M7 14l3-3 3 2 5-6"></path>
+              </svg>
+            </div>
+            <h3 class="terminal-card__title">Live Summary View</h3>
+            <p class="terminal-card__text">
+              Show terminal-related titles and short summaries so users can quickly understand what
+              each terminal tool does before opening the terminal page.
+            </p>
+          </div>
+
+          <div class="terminal-card">
+            <div class="terminal-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+                <path d="M8 20h8"></path>
+                <path d="M12 18v2"></path>
+              </svg>
+            </div>
+            <h3 class="terminal-card__title">Dedicated Terminal Page</h3>
+            <p class="terminal-card__text">
+              Use the Terminal button to forward users to <strong>terminal.html</strong>, where the full
+              terminal interface and detailed workflow can continue in a dedicated screen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="history-section" id="transactions-history">
+  <div class="history-section__wrap">
+    <div class="history-section__header">
+      <div>
+        <div class="history-section__eyebrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"></path>
+            <path d="M7 14l3-3 3 2 5-6"></path>
+          </svg>
+          Transactions History
+        </div>
+
+        <h2 class="history-section__title">
+          Track your <span>recent transactions</span>
+        </h2>
+
+        <p class="history-section__sub">
+          Review your latest payment activity, transfer flow, credited amounts, and spending records
+          in one clean history section for quick visibility and faster access.
+        </p>
+      </div>
+
+      <a href="passbook.html" class="history-section__cta">
+        View Full History
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="history-list">
+      <div class="history-card">
+        <div class="history-card__left">
+          <div class="history-card__icon received">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3 class="history-card__title">Money Received</h3>
+            <p class="history-card__meta">From Rahul Sharma • UPI • Today, 10:42 AM</p>
+          </div>
+        </div>
+        <div class="history-card__right">
+          <div class="history-card__amount positive">+ ₹4,500</div>
+          <div class="history-card__status success">Success</div>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <div class="history-card__left">
+          <div class="history-card__icon sent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3 class="history-card__title">Sent to Merchant</h3>
+            <p class="history-card__meta">Cafe Payment • QR Scan • Today, 09:18 AM</p>
+          </div>
+        </div>
+        <div class="history-card__right">
+          <div class="history-card__amount negative">- ₹320</div>
+          <div class="history-card__status success">Success</div>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <div class="history-card__left">
+          <div class="history-card__icon bank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21V10"></path>
+              <path d="M21 21V10"></path>
+              <path d="M12 3L2 10h20L12 3z"></path>
+              <path d="M6 14h.01"></path>
+              <path d="M10 14h.01"></path>
+              <path d="M14 14h.01"></path>
+              <path d="M18 14h.01"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="history-card__title">Bank Transfer</h3>
+            <p class="history-card__meta">To HDFC Bank • Account Transfer • Yesterday</p>
+          </div>
+        </div>
+        <div class="history-card__right">
+          <div class="history-card__amount negative">- ₹12,000</div>
+          <div class="history-card__status pending">Pending</div>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <div class="history-card__left">
+          <div class="history-card__icon refund">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10h10a4 4 0 1 1 0 8H9"></path>
+              <path d="M7 14l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="history-card__title">Refund Credited</h3>
+            <p class="history-card__meta">Shopping Refund • Auto Credit • 2 days ago</p>
+          </div>
+        </div>
+        <div class="history-card__right">
+          <div class="history-card__amount positive">+ ₹1,299</div>
+          <div class="history-card__status success">Credited</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer id="support" class="footer">
+    <div class="footer__left">
+      <img src="assets/logo.svg" alt="TrustLine logo" class="brand__logo"/>
+      <span class="brand__name">TrustLine</span>
+    </div>
+    <div class="footer__right">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="#">Careers</a>
+    </div>
+  </footer>
+
+  <script src="JS/Home_script.js"></script>
+</body>
+</html>

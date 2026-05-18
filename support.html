@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustLine Support</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #footerlast{
+        display: flex;
+        justify-content: center;
+      }
+      #navbar{
+        position: sticky;
+        top: 0px;
+        z-index: 100;
+      }
+      #link:hover{
+        color: #0D6EFD;
+      }
+      #zcolor{
+        color: #424242;
+      }
+      .menu.selected {
+        color: #387ED1;
+      }
+      .faq-item {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1.5rem 0;
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+      .faq-question {
+        font-weight: 600;
+        cursor: pointer;
+        color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .faq-question:hover {
+        color: #387ED1;
+      }
+      .faq-answer {
+        color: #666;
+        margin-top: 1rem;
+        line-height: 1.6;
+        display: none;
+      }
+      .faq-answer.show {
+        display: block;
+      }
+      .support-channel {
+        padding: 1.5rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .support-channel:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+      .support-icon {
+        font-size: 40px;
+        color: #387ED1;
+        margin-bottom: 1rem;
+      }
+      .contact-form {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom" style="background-color: white; height: 70px" id="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html" style="margin-left: 30px">
+          <img src="assets/logo.svg" alt="logoimg" style="width: 25%" />
+          <span class="fs-3 p-2 mt-5" id="zcolor">TrustLine</span>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:550px">
+          <form class="d-flex" role="search" style="margin-left:100px; margin-top:15px">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" aria-current="page" href="Sign.html" id="link">
+                  <p class="menu">Signup</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" href="about.html" id="link">
+                  <p class="menu">About</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-right:40px">
+                <a class="nav-link active" aria-current="page" href="blogs.html" id="link">
+                  <p class="menu">Blogs</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="support.html" id="link">
+                  <p class="menu selected">Support</p>
+                </a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="container mb-5 mt-5">
+      <div class="row text-center mb-5">
+        <h1 class="mb-3">We're Here to Help</h1>
+        <p class="text-muted fs-5" style="max-width: 600px; margin: 0 auto;">Find answers to your questions, get technical support, and connect with our team.</p>
+      </div>
+    </div>
+
+    <!-- Support Channels -->
+    <div class="container mb-5">
+      <h3 class="text-center mb-4">Contact Us</h3>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="support-channel">
+            <div class="support-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h5>Live Chat Support</h5>
+            <p class="text-muted">Available 9 AM - 9 PM IST, Monday to Saturday</p>
+            <a href="#contact-form" class="btn btn-sm btn-outline-primary" onclick="document.getElementById('contact-form').scrollIntoView({behavior: 'smooth'}); return false;">Start Chat</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="support-channel">
+            <div class="support-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h5>Email Support</h5>
+            <p class="text-muted">trustline.banking@gmail.com</p>
+            <a href="https://mail.google.com/mail/u/0/#inbox?compose=jrjtXSpJLHDVzpZjhrmPJbpKGqnBzslscsCDHNDTTSpBsMPlKjVrVbLgzRrjnCgfvMGJjWpq" class="btn btn-sm btn-outline-primary">Send Email</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="support-channel">
+            <div class="support-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h5>Phone Support</h5>
+            <p class="text-muted">+91 9834642027 (24/7)</p>
+            <a href="tel:+919834642027" class="btn btn-sm btn-outline-primary">Call Now</a>
+            <a href="https://wa.me/919834642027?text=Hello%20TrustLine%20Support" target="_blank" class="btn btn-sm btn-success ms-2" style="background-color: #25D366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="support-channel">
+            <div class="support-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h5>Community Forum</h5>
+            <p class="text-muted">Ask questions and share experiences</p>
+            <a href="#faq-section" class="btn btn-sm btn-outline-primary" onclick="document.getElementById('faq-section').scrollIntoView({behavior: 'smooth'}); return false;">Visit Forum</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div id="faq-section" class="container mb-5">
+      <h3 class="text-center mb-4">Frequently Asked Questions</h3>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How do I create a TrustLine account?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Creating a TrustLine account is simple and takes just 5 minutes. Download the app, enter your email and phone number, set a secure password, and verify your identity. Once verified, you can start using TrustLine immediately.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Is TrustLine safe and secure?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, absolutely. TrustLine uses bank-grade encryption, multi-factor authentication, and real-time fraud monitoring to protect your account and transactions. We comply with all RBI guidelines and undergo regular security audits.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What are the transaction fees?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>TrustLine offers zero-fee UPI transfers and low-cost international transfers. We provide complete transparency with no hidden charges. All fees are clearly displayed before you confirm a transaction.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How long do transfers take?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Most UPI transfers are instant and reach the recipient in seconds. Bank transfers typically complete within 1-2 business days. International transfers may take 2-5 business days depending on the destination country.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Can I link multiple bank accounts?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, you can link multiple bank accounts and wallets to your TrustLine account. Switch between accounts easily for different transactions. All connections are secured with encryption.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What should I do if I forget my password?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Click "Forgot Password" on the login screen. Enter your registered email or phone number, and we'll send you a secure link to reset your password. You may need to verify your identity for security purposes.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How do I report a suspicious transaction?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Contact our support team immediately through live chat, email, or phone. Report the transaction details, and our fraud team will investigate within 24 hours. You can also file a complaint through the app.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div id="contact-form" class="container mb-5">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <h4 class="mb-4">Can't find what you're looking for?</h4>
+          <div class="contact-form">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your full name" />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="your@email.com" />
+              </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" placeholder="How can we help?" />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Describe your issue..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background-color: rgb(240,240,240)">
+      <div class="container mt-5 border-top">
+        <div class="row mt-5">
+          <div class="col" style="margin-left:110px">
+            <img src="assets/logo.svg" alt="logoimg" style="width:50%" />
+            <p class="mt-4">© 2025 - current ,<br/> TrustLine E-Payment Ltd. All rights reserved.</p>
+          </div>
+          <div class="col">
+            <h5>Company</h5>
+            <p class="text-muted">About</p>
+            <p class="text-muted">Products</p>
+            <p class="text-muted">Pricing</p>
+            <p class="text-muted">Referral programme</p>
+            <p class="text-muted">Careers</p>
+            <p class="text-muted">TrustLine.tech</p>
+            <p class="text-muted">Open source</p>
+            <p class="text-muted">Press & media</p>
+            <p class="text-muted">TrustLine Cares (CSR)</p>
+          </div>
+          <div class="col">
+            <h5>Support</h5>
+            <p class="text-muted">Contact us</p>
+            <p class="text-muted">Support portal</p>
+            <p class="text-muted">Z-Connect blog</p>
+            <p class="text-muted">List of charges</p>
+            <p class="text-muted">Downloads & resources</p>
+            <p class="text-muted">Videos</p>
+            <p class="text-muted">Market overview</p>
+            <p class="text-muted">How to file a complaint?</p>
+            <p class="text-muted">Status of your complaints</p>
+          </div>
+          <div class="col">
+            <h5>Account</h5>
+            <p class="text-muted">Open an account</p>
+            <p class="text-muted">Fund transfer</p>
+          </div>
+        </div>
+        <div class="p-5 text-muted">
+          <p style="font-size:14px">TrustLine is a next-generation fintech platform built to simplify digital payments, peer-to-peer transfers, and financial tracking for individuals and businesses. Our mission is to make secure transactions accessible, transparent, and lightning-fast for everyone. <br />
+           We believe in building technology that empowers users—not overwhelms them. Whether you're a freelancer, merchant, or everyday user, TrustLine gives you the tools to manage your money with confidence<br />
+          </p>
+          <p style="font-size:14px"> TrustLine Technologies Pvt. Ltd. is a registered entity under the Companies Act, 2013. We comply with applicable financial regulations and data protection laws in India. Our payment services are built in accordance with RBI guidelines and industry standards.
+          </p>
+        </div>
+        <div id="footerlast" class="text-muted">
+          <p style="font-size:13px;margin-right:20px">NSE </p>
+          <p style="font-size:13px;margin-right:20px">BSE </p>
+          <p style="font-size:13px;margin-right:20px">MCX </p>
+          <p style="font-size:13px;margin-right:20px">Terms & conditions </p>
+          <p style="font-size:13px;margin-right:20px">Policies & procedures </p>
+          <p style="font-size:13px;margin-right:20px">Privacy policy </p>
+          <p style="font-size:13px;margin-right:20px">Disclosure</p>
+          <p style="font-size:13px;margin-right:20px">For investor's attention </p>
+          <p style="font-size:13px;margin-right:20px">Investor charter</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script>
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        answer.classList.toggle('show');
+        const icon = element.querySelector('i');
+        icon.style.transform = answer.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+        icon.style.transition = 'transform 0.3s ease';
+      }
+    </script>
+  </body>
+</html>
